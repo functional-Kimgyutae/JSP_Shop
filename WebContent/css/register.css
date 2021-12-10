@@ -1,0 +1,105 @@
+
+.register {
+    min-height: 1000px;
+}
+
+.register > h2 {
+    text-align: center;
+    padding: 50px 0px;
+    padding-top: 70px;
+    font-weight: 300;
+}
+.register > form {
+    margin: 0 auto;
+    width: 640px;
+    border-top: 1px solid #000;
+}
+.register th {
+    width: 160px;
+    padding: 20px 0 0 20px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #333;
+    line-height: 20px;
+    vertical-align: top;
+    text-align: left;
+}
+.register td {
+    padding: 10px 0;
+    font-size: 14px;
+}
+.register input[type=text],.register input[type=password],.register input[type=date] {
+    width: 332px;
+    height: 44px;
+    padding: 0 14px;
+    font-size: 14px;
+    color: #333;
+    line-height: 20px;
+    border-radius: 3px;
+    background: #fff;
+    outline: none;
+    vertical-align: top;
+    border: 1px solid #ccc;
+}
+
+.register a.register_btn {
+    border: 1px solid #8161a7;
+    background: #fff;
+    color: #8161a7;
+    display: inline-block;
+    width: 120px;
+    height: 44px;
+    margin-left: 5px;
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 40px;
+}
+
+.register .txt_guide {
+    font-size: 12px;
+    padding: 10px 0 9px;
+    color: #666;
+    line-height: 18px;
+    letter-spacing: -1px;
+}
+
+.register .add {
+    display: inline-block;   
+    width: 120px;
+    height: 44px;
+    border: 1px solid #8161a7;
+    border-radius: 3px;
+    text-align: center;
+    text-decoration: none;
+    line-height: 40px;
+    background-color: #fff;
+    color:#8161a7;
+}
+
+.register .Detail {
+    margin-top: 10px;
+}
+
+.register label {
+    display: inline-block;
+    padding: 10px 52px 10px 0;
+    vertical-align: top;
+}
+.register form > div {
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+.register button {
+    margin: 0 auto;
+    width: 240px;
+    height: 56px;
+    font-size: 16px;
+    line-height: 54px;
+    border: 1px solid #5f0081;
+    background-color: #5f0081;
+    color: #fff;
+    border-radius: 3px;
+}
