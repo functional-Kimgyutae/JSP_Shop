@@ -10,15 +10,14 @@ import javax.servlet.http.HttpSession;
 import controller.Controller;
 import controller.MyView;
 
-public class loginFormController implements Controller {
+public class logoutController implements Controller {
 
 	@Override
 	public MyView process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//dao 성공했다면
 		
 		HttpSession session = request.getSession();
-		session.setAttribute("user_id", "asdfasf");
+		session.removeAttribute("user_id");
 		
 		return new MyView("/index");
 	}

@@ -8,6 +8,7 @@
     <title>규붕</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/font.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/app.css">
+        <script src="<%= request.getContextPath() %>/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <!-- header 영역 -->
@@ -20,6 +21,7 @@
                 	<% }else{ %>
                 		<li class="menu after_bar"><a href="<%= request.getContextPath() %>/user/user"><%= session.getAttribute("user_id") %>님</a></li>
                 	<% } %> 
+                		<li class="menu after_bar"><a href="<%= request.getContextPath() %>/user/logout">로그아웃</a></li>
                 <% } else { %>
                 <li class="menu after_bar"><a href="<%= request.getContextPath() %>/view/user/register.jsp">회원가입</a></li>
                 <li class="menu after_bar"><a href="<%= request.getContextPath() %>/view/user/login.jsp">로그인</a></li>

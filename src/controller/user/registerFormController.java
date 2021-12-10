@@ -14,8 +14,10 @@ public class registerFormController implements Controller {
 	@Override
 	public MyView process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+//		dao Ã³¸®
+		
+		
+		return new MyView("/view/user/login.jsp");
 	}
 
 }

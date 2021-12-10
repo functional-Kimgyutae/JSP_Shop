@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/register.css">
     <section class="register con">
       <h2>회원가입</h2>
-        <form action="#" method="post" name="frm" onsubmit="return checkForm()">
+        <form action="<%= request.getContextPath() %>/user/register" method="post" name="frm" onsubmit="return checkForm()">
             <table>
                 <tr>
                     <th>아이디</th>
@@ -77,6 +77,23 @@
     
 
     <script>
+    let check = 0;
+    document.querySelector(".register_btn").addEventListener("click",()=> {
+    	console.log("aaa");
+    	$.ajax(
+    		{
+    			type:"POST",
+    			url:"<%= request.getContextPath() %>/ajax/check_id",
+    			data:{id:document.frm.id.value},
+    			dataType:"json",
+    			success :  res => {
+					if(res.name == 0) alert("중복값이 있음")
+					else check = 1
+    			},error: log =>{console.log("실패"+log)}
+    		}		
+    	)
+    });
+    
     function kakaopost() {
         new daum.Postcode({
             oncomplete: function (data) {
@@ -86,7 +103,6 @@
         }).open();
     }
     function checkForm(){
-    	console.log("aa");
   
     	if(document.frm.id.value.trim() == ""){
     	alert("아이디가 입력되지 않았습니다.");
@@ -156,7 +172,10 @@
         	document.frm.passwordc.focus();
         	return false;
     	}
-        
+    	if(check == 0){
+    		alert("아이디 중복 검사를 안했거나, 아이디가 중복됩니다.");
+    		return false;
+    	}
     	alert("회원등록이 완료되었습니다!");
     	return false;
     }

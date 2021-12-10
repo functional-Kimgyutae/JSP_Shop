@@ -11,15 +11,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.admin.adminController;
+import controller.ajax.checkIdAjaxController;
 import controller.shop.productController;
 import controller.shop.searchController;
 import controller.shop.tagController;
 import controller.user.cartController;
 import controller.user.loginFormController;
+import controller.user.logoutController;
 import controller.user.registerFormController;
 import controller.user.userController;
 
-@WebServlet({"/index","/shop/*", "/user/*","/admin/*" })
+@WebServlet({"/index","/shop/*", "/user/*","/admin/*","/ajax/*" })
 
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -37,6 +39,7 @@ public class FrontController extends HttpServlet {
 		controllerMap.put("/user/user", new userController());
 		controllerMap.put("/user/login", new loginFormController());
 		controllerMap.put("/user/register", new registerFormController());	
+		controllerMap.put("/user/logout", new logoutController());
 		controllerMap.put("/user/cart", new cartController());
 		
 		//admin 관련 페이지
@@ -46,6 +49,8 @@ public class FrontController extends HttpServlet {
 		controllerMap.put("/shop/tag", new tagController());
 		controllerMap.put("/shop/product", new productController());
 		controllerMap.put("/shop/search", new searchController());
+		//ajax 쓰는 페이지
+		controllerMap.put("/ajax/check_id",new checkIdAjaxController());
 	}
 
 

@@ -21,7 +21,6 @@
             E-mail : y2010109@y-y.hs.kr 사업자등록번호 : 123-45-56789호 <br>
             © GYUBUNG Corporation All Rights Reserved.</p>
     </footer>
-    <script src="<%= request.getContextPath() %>/js/jquery-3.6.0.min.js"></script>
     <script src="<%= request.getContextPath() %>/js/app.js"></script>
 </body>
 </html>
