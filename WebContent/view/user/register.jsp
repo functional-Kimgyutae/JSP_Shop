@@ -58,14 +58,9 @@
                 <tr>
                     <th>성별</th>
                     <td>
-                        <label for=""><input name="gender" id="gender" type="radio">남자</label>
-                        <label for=""><input name="gender" id="gender" type="radio">여자</label>
-                        <label for=""><input name="gender" id="gender" checked type="radio" checked>선택안함</label>
-                    </td>
-                </tr>
-                <tr>
-                    <th>생년월일</th>
-                    <td><input name="date" id="date" type="date">
+                        <label for=""><input name="gender" id="gender" value="1" type="radio">남자</label>
+                        <label for=""><input name="gender" id="gender" value="2" type="radio">여자</label>
+                        <label for=""><input name="gender" id="gender" value="0" checked type="radio" checked>선택안함</label>
                     </td>
                 </tr>
             </table>
@@ -79,7 +74,9 @@
     <script>
     let check = 0;
     document.querySelector(".register_btn").addEventListener("click",()=> {
-    	console.log("aaa");
+        let id_reg = /^[A-Z0-9a-z]{6,}$/;
+    	if(document.frm.id.value.trim() == "")return;
+    	if(!id_reg.test(document.frm.id.value))return;
     	$.ajax(
     		{
     			type:"POST",
@@ -87,8 +84,11 @@
     			data:{id:document.frm.id.value},
     			dataType:"json",
     			success :  res => {
-					if(res.name == 0) alert("중복값이 있음")
-					else check = 1
+					if(res.same == "true") alert("아이디가 이미 사용중입니다.")
+					else{
+						alert("아이디가 사용가능합니다.");
+						check = 1
+					}
     			},error: log =>{console.log("실패"+log)}
     		}		
     	)
@@ -102,6 +102,7 @@
             }
         }).open();
     }
+    
     function checkForm(){
   
     	if(document.frm.id.value.trim() == ""){
@@ -144,11 +145,6 @@
     	document.frm.addr2.focus();
     	return false;
     	}
-    	if(document.frm.date.value.trim() == ""){
-    	alert("생년월일이 입력되지 않았습니다.");
-    	document.frm.date.focus();
-    	return false;
-    	}
         let email_reg = /(^[A-Za-z_0-9]+@[a-zA-Z_0-9]+(\.[a-z]{2,3}))$/;
         let password_reg = /^[A-Z0-9a-z!@#$%^&*()]{10,}$/;
         let id_reg = /^[A-Z0-9a-z]{6,}$/;
@@ -176,8 +172,8 @@
     		alert("아이디 중복 검사를 안했거나, 아이디가 중복됩니다.");
     		return false;
     	}
-    	alert("회원등록이 완료되었습니다!");
-    	return false;
+
+    	return true;
     }
     </script>
         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

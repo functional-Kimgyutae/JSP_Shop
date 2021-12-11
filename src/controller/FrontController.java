@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import controller.admin.adminController;
 import controller.ajax.checkIdAjaxController;
 import controller.shop.productController;
+import controller.shop.productInsertController;
 import controller.shop.searchController;
 import controller.shop.tagController;
 import controller.user.cartController;
@@ -49,6 +50,8 @@ public class FrontController extends HttpServlet {
 		controllerMap.put("/shop/tag", new tagController());
 		controllerMap.put("/shop/product", new productController());
 		controllerMap.put("/shop/search", new searchController());
+		controllerMap.put("/shop/product_insert", new productInsertController());
+		
 		//ajax 쓰는 페이지
 		controllerMap.put("/ajax/check_id",new checkIdAjaxController());
 	}

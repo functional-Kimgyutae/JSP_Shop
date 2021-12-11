@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ include file="../../layout/header.jsp" %>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/login.css">
-    
+
     <section class="login con">
         <div class="form_box">
             <h2>로그인</h2>
@@ -23,6 +23,3 @@
    	<%@ include file="../../layout/footer.jsp" %>
    	
    	
-  <script>
-  	
-  </script>

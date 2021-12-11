@@ -19,7 +19,7 @@ public class logoutController implements Controller {
 		HttpSession session = request.getSession();
 		session.removeAttribute("user_id");
 		
-		return new MyView("/index");
+		return new MyView("/view/index.jsp");
 	}
 
 }

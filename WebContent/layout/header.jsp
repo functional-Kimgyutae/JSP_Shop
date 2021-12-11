@@ -11,12 +11,24 @@
         <script src="<%= request.getContextPath() %>/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+  <script>   
+  	<%
+		if(session.getAttribute("alert") != null) {
+  			String data = (String)session.getAttribute("alert");
+  		%>
+  			alert('<%= data %>');		
+		<%
+			session.removeAttribute("alert");
+		}
+	%>
+  	
+  </script> 
     <!-- header 영역 -->
     <header>
         <div id="user_menu" class="con">
             <ul id="list_menu">
             	<% if(session.getAttribute("user_id") != null){ %>
-            		<% if(session.getAttribute("user_id") == "admin" ) {%>
+            		<% if(session.getAttribute("user_id").equals("admin")) {%>
                 		<li class="menu after_bar"><a href="<%= request.getContextPath() %>/admin/admin">어드민</a></li>
                 	<% }else{ %>
                 		<li class="menu after_bar"><a href="<%= request.getContextPath() %>/user/user"><%= session.getAttribute("user_id") %>님</a></li>
@@ -36,19 +48,19 @@
             <ul class="gnb">
                 <li><a href="#">전체 카테고리</a>
                     <ul class="slide">
-                        <li><a href="<%= request.getContextPath() %>/shop/tag?tag=1">패션의류·잡화·뷰티</a></li>
-                        <li><a href="<%= request.getContextPath() %>/shop/tag?tag=2">컴퓨터·디지털·가전</a></li>
-                        <li><a href="<%= request.getContextPath() %>/shop/tag?tag=3">스포츠·건강·렌탈</a></li>
-                        <li><a href="<%= request.getContextPath() %>/shop/tag?tag=4">자동차·공구</a></li>
-                        <li><a href="<%= request.getContextPath() %>/shop/tag?tag=5">홈데코·문구</a></li>
-                        <li><a href="<%= request.getContextPath() %>/shop/tag?tag=6">취미·반려</a></li>
-                        <li><a href="<%= request.getContextPath() %>/shop/tag?tag=7">식품·생필품</a></li>
+                        <li><a href="<%= request.getContextPath() %>/shop/tag?tag=0">패션의류·잡화·뷰티</a></li>
+                        <li><a href="<%= request.getContextPath() %>/shop/tag?tag=1">컴퓨터·디지털·가전</a></li>
+                        <li><a href="<%= request.getContextPath() %>/shop/tag?tag=2">스포츠·건강·렌탈</a></li>
+                        <li><a href="<%= request.getContextPath() %>/shop/tag?tag=3">자동차·공구</a></li>
+                        <li><a href="<%= request.getContextPath() %>/shop/tag?tag=4">홈데코·문구</a></li>
+                        <li><a href="<%= request.getContextPath() %>/shop/tag?tag=5">취미·반려</a></li>
+                        <li><a href="<%= request.getContextPath() %>/shop/tag?tag=6">식품·생필품</a></li>
                     </ul>    
                 </li>
-                <li><a href="<%= request.getContextPath() %>/shop/tag?tag=8">핫 딜</a></li>
-                <li><a href="<%= request.getContextPath() %>/shop/tag?tag=9">베스트</a></li>
-                <li><a href="<%= request.getContextPath() %>/shop/tag?tag=10">빠른 배송</a></li>
-                <li><a href="<%= request.getContextPath() %>/shop/tag?tag=11">알뜰 쇼핑</a></li>
+                <li><a href="<%= request.getContextPath() %>/shop/tag?tag=7">핫 딜</a></li>
+                <li><a href="<%= request.getContextPath() %>/shop/tag?tag=8">베스트</a></li>
+                <li><a href="<%= request.getContextPath() %>/shop/tag?tag=9">빠른 배송</a></li>
+                <li><a href="<%= request.getContextPath() %>/shop/tag?tag=10">알뜰 쇼핑</a></li>
             </ul>
             <div id="search">
                 <form action="<%= request.getContextPath() %>/shopping/search" method="get">
