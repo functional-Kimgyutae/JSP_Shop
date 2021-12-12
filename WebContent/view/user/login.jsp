@@ -7,8 +7,8 @@
         <div class="form_box">
             <h2>로그인</h2>
             <form action="<%= request.getContextPath() %>/user/login" method="post">
-                <input type="text" name="id" placeholder="아이디를 입력해주세요">
-                <input type="password" name="password" placeholder="비밀번호를 입력해주세요">
+                <input type="text" name="id" placeholder="아이디를 입력해주세요" maxlength='20'>
+                <input type="password" name="password" placeholder="비밀번호를 입력해주세요" maxlength='20'>
                 <div>
                     <ul>
                         <li><a href="#">아이디 찾기</a></li>|

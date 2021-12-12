@@ -8,14 +8,24 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import controller.MyView;
+import dao.ProductDAO;
+import vo.ProductVO;
 
 public class productController implements Controller {
 
 	@Override
 	public MyView process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+
+		ProductDAO dao = new ProductDAO();	
+		
+		String p_id = request.getParameter("p_id");
+		
+		ProductVO vo = dao.getProduct(p_id);
+		
+		request.setAttribute("data",vo);
+		
+		return new MyView("/view/shop/product.jsp");
 	}
 
 }

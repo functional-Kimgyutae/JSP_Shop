@@ -25,16 +25,16 @@
             <div class="admin_table">
                 <div class="product_upload active">
                     <h2>상품 등록</h2>
-                    <form action="/shop/product_insert" name="frm" class="frm">
+                    <form action="<%= request.getContextPath() %>/shop/product_insert" method="post" name="frm" class="frm" enctype="multipart/form-data">
                         <table>
                             <!-- 제목,소제목,가격,할인율,판매단위,중량.포장타입,설명,메인이미지,클릭시 이미지업로드파일복사 -->
                             <tr>
                                 <th>제목</th>
-                                <td><input type="text" name="title" id="title"></td>
+                                <td><input type="text" name="title" id="title" maxlength='20'></td>
                             </tr>
                             <tr>
                                 <th>소제목</th>
-                                <td><input type="text" name="l_title" id="l_title"></td>
+                                <td><input type="text" name="l_title" id="l_title" maxlength='15'></td>
                             </tr>
                             <tr>
                                 <th>태그</th>
@@ -60,19 +60,19 @@
                             </tr>
                             <tr>
                                 <th>판매단위</th>
-                                <td><input type="text" name="unit" id="unit"></td>
+                                <td><input type="text" name="unit" id="unit" maxlength='10'></td>
                             </tr>
                             <tr>
                                 <th>포장타입</th>
-                                <td><input type="text" name="packaging" id="packaging"></td>
+                                <td><input type="text" name="packaging" id="packaging" maxlength='10'></td>
                             </tr>
                             <tr>
                                 <th>설명</th>
-                                <td><textarea name="text" id="text" cols="30" rows="5"></textarea></td>
+                                <td><textarea name="text" id="text" cols="30" rows="5" maxlength='100'></textarea></td>
                             </tr>
                             <tr>
                                 <th>메인이미지</th>
-                                <td><input type="file" name="main" id="main">
+                                <td><input type="file" name="img0" id="img0">
                                 <input type="hidden" name="cnt" id="cnt" value="0">
                             </td>
                             </tr>
@@ -113,36 +113,36 @@
         </div>
     </section>
     <script>
-    	let idx = 0;
-        let arr = [];
-        document.querySelector(".img_add").addEventListener("click",() => {
-        	console.log("click");
-            if(idx==5) {
-            	alert("6개 이상은 안됩니다.");
+    let idx = 0;
+    let arr = [];
+    document.querySelector(".img_add").addEventListener("click",() => {
+        if(idx==5) {
+            alert("6개 이상은 안됩니다.");
             return;
-            }   
-            let dom = document.createElement("tr");
-            dom.classList.add(`idx${idx+1}`);
-            dom.innerHTML = `<th>이미지${idx+1}</th><td><input type="file" onchange="fileCheck(this)" name="img${idx+1}" id="img${idx+1}"></td>`;
-            document.querySelector(".frm>table>tbody").append(dom);
-            arr.push(dom);
-            idx++;
-            document.querySelector(".frm #cnt").value = idx;
-        })
-            document.querySelector(".img_del").addEventListener("click",() => {
-            	if(idx==0) {
-                	alert("삭제할 이미지가 없습니다.");
-                    return;
-                        }   
-                        arr.pop().remove();
-                        idx--;
-                        document.querySelector(".frm>table #cnt").value = idx;
-                    })
+        }   
+        let dom = document.createElement("tr");
+		let idd =(idx+1)+"";
+        dom.classList.add("idx"+idd);
+        dom.innerHTML = '<th>이미지'+idd+'</th><td><input type="file" onchange="fileCheck(this)" name="img'+idd+'" id="img'+idd+'"></td>';
+        document.querySelector(".frm>table>tbody").append(dom);
+        arr.push(dom);
+        idx++;
+        document.querySelector(".frm #cnt").value = idx;
+    })
+    document.querySelector(".img_del").addEventListener("click",() => {
+        if(idx==0) {
+            alert("삭제할 이미지가 없습니다.");
+            return;
+        }   
+        arr.pop().remove();
+        idx--;
+        document.querySelector(".frm>table #cnt").value = idx;
+    })
                     function fileCheck(obj){
                         pathpoint = obj.value.lastIndexOf(".");
                         filepoint = obj.value.substring(pathpoint+1,obj.length);
                         filetype = filepoint.toLowerCase();
-                        if(filetype !="jpg"||filetype !="gif"||filetype !="png"||filetype!="jpeg"){
+                        if(filetype !="jpg"&&filetype !="gif"&&filetype !="png"&&filetype!="jpeg"){
                             alert("이미지 파일만 넣을수 있습니다.");
                             obj.value = "";
                         }

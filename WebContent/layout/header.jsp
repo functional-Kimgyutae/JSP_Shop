@@ -57,15 +57,15 @@
                         <li><a href="<%= request.getContextPath() %>/shop/tag?tag=6">식품·생필품</a></li>
                     </ul>    
                 </li>
-                <li><a href="<%= request.getContextPath() %>/shop/tag?tag=7">핫 딜</a></li>
-                <li><a href="<%= request.getContextPath() %>/shop/tag?tag=8">베스트</a></li>
-                <li><a href="<%= request.getContextPath() %>/shop/tag?tag=9">빠른 배송</a></li>
-                <li><a href="<%= request.getContextPath() %>/shop/tag?tag=10">알뜰 쇼핑</a></li>
+                <li><a href="#">핫 딜</a></li>
+                <li><a href="#">베스트</a></li>
+                <li><a href="#">빠른 배송</a></li>
+                <li><a href="#">알뜰 쇼핑</a></li>
             </ul>
             <div id="search">
-                <form action="<%= request.getContextPath() %>/shopping/search" method="get">
-                    <input type="text" id="keyword_search"name="keyword">
-                    <img src="<%= request.getContextPath() %>/data/design/search.png" alt="">
+                <form action="<%= request.getContextPath() %>/shop/search" method="get">
+                    <input type="text" name="search" id="keyword_search" maxlength='20'>
+                    <button><img src="<%= request.getContextPath() %>/data/design/search.png" alt=""></button>
                 </form>
             </div>
             <div id="location_set">

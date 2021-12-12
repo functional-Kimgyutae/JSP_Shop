@@ -60,11 +60,27 @@ create table product (
     p_view number default 0,
     p_exit number default 1 -- 구매가능 : 1, 삭제 : 2
 );
-   
+select * from product;
+
 select count(*) as cnt from product;
 
 select * from product where p_id = 0;
 
 INSERT INTO product(p_id,p_name,p_l_name,p_tag,p_price,p_count,p_cnt,p_unit,p_packaging,p_text) values ('0','상품1','상품2','1','10000','10','1','1개','냉장','ㅁㄴㅇㄻㄴㅇㄻㄴㅇㄹ');
 
+drop table detail_product;
+create table detail_product (
+    idx number primary key,
+    p_id number,
+    p_img VARCHAR2(1000),
+    constraint detail_product_p_id_fk FOREIGN key(p_id) REFERENCES product(p_id) 
+);
+select * from detail_product;
+
+select p_img from detail_product where p_id = 0;
+
+drop sequence detail_idx;
+
+CREATE SEQUENCE detail_idx START WITH 0 minvalue 0 INCREMENT BY 1 NOCACHE;
     
+INSERT INTO DETAIL_PRODUCT (idx,p_id,p_img) values (detail_idx.NEXTVAL,'0','2');

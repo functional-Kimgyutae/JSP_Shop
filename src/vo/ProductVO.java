@@ -5,6 +5,7 @@ import java.util.HashMap;
 import controller.Controller;
 
 public class ProductVO {
+	private String p_id;
 	private String name;
 	private String l_name;
 	private int tag;
@@ -17,8 +18,18 @@ public class ProductVO {
 	private String image_url;
 	private int view;
 	private HashMap<String, String> image_list = new HashMap<>();
+	
+	public String getP_id() {
+		return p_id;
+	}
+	public void setP_id(String p_id) {
+		this.p_id = p_id;
+	}
 	public HashMap<String, String> getImage_list() {
 		return image_list;
+	}
+	public String getImage_list_value(String key) {
+		return this.image_list.get(key);
 	}
 	public void setImage_list(String key,String value) {
 		this.image_list.put(key,value);
