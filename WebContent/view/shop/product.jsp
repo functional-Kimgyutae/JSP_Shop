@@ -1,3 +1,5 @@
+<%@page import="vo.UserVO"%>
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="vo.ProductVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -6,17 +8,21 @@
     <% 
     	ProductVO data = (ProductVO)request.getAttribute("data");
     	String[] tags = {"패션의류·잡화·뷰티","컴퓨터·디지털·가전","스포츠·건강·렌탈","자동차·공구","홈데코·문구","취미·반려","식품·생필품","핫 딜","베스트","빠른 배송","알뜰 쇼핑"};
+		DecimalFormat formatter = new DecimalFormat("###,###");
     %>
     <section class="con product">
         <div class="inner_view">
             <div class="img_box">
                 <img src="<%= data.getImage_list_value("0") %>" alt="">
             </div>
+            <input type="hidden" class="p_id" value="<%= data.getP_id() %>">
+            <input type="hidden" class="p_price" value="<%= data.getPrice() %>">
+
             <div class="text">
                 <h2><%= data.getName() %><br><span><%= data.getL_name() %></span></h2>
-                <p><span class="price"><%= Math.ceil(data.getPrice()-(data.getPrice()*((float)data.getCount()/100))) %>원</span>
+                <p><span class="price"><%= formatter.format(Math.ceil(data.getPrice()-(data.getPrice()*((float)data.getCount()/100)))) %>원</span>
                 <% if(data.getCount() != 0) { %>
-                <span class="sale"><%= data.getCount() %>%</span><br><span class="before"><%= data.getPrice() %>원</span></p>
+                <span class="sale"><%= data.getCount() %>%</span><br><span class="before"><%= formatter.format(data.getPrice()) %>원</span></p>
                 <%} %>
                 <div class="goods_info">
                     <dl>
@@ -37,11 +43,11 @@
                     </dl>
                     <dl>
                         <dt>구매수량</dt>
-                        <dd><input type="number"></dd>
+                        <dd><button class="down">-</button><input type="number" class="cnt" value="1" readonly><button class="up">+</button></dd>
                     </dl>
                 </div>
-                <p>총 상품금액:<span><%= Math.ceil(data.getPrice()-(data.getPrice()*((float)data.getCount()/100))) %></span>원</p>
-                <button>장바구니 담기</button>
+                <p>총 상품금액:<span class="cost"><%= formatter.format(Math.ceil(data.getPrice()-(data.getPrice()*((float)data.getCount()/100)))) %></span>원</p>
+                <button class="<%= session.getAttribute("user_id") != null? "add_cart": "not_login" %>">장바구니 담기</button>
             </div>
         </div>
         <div class="product_img">
@@ -69,10 +75,18 @@
                 </tbody>
             </table>
             <button>후기쓰기</button>
-            <div class="board_pg_area">
-                1234567679890
+ 			<div class="pg">
+            	<ul>
+               		<li><a href="#">&lt;</a></li>
+					<li><a href="#">1</a></li>
+            		<li><a href="#">2</a></li>
+			        <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                	<li><a href="#">5</a></li>
+            		<li><a href="#">&gt;</a></li>
+            	</ul>
             </div>
         </div>
     </section>
-
+	<script src="<%= request.getContextPath() %>/js/product.js"></script>
    	<%@ include file="../../layout/footer.jsp" %>

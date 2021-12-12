@@ -14,6 +14,7 @@ import common.SHA256;
 import controller.Controller;
 import controller.MyView;
 import dao.UserDAO;
+import vo.UserVO;
 
 public class loginFormController implements Controller {
 
@@ -38,7 +39,9 @@ public class loginFormController implements Controller {
 		
 		if(login) {
 			path = "/index";
-			session.setAttribute("user_id",id);
+			UserVO vo = dao.getLoginProcess(id, psd);
+			session.setAttribute("userVO",vo);
+			session.setAttribute("user_id",vo.getM_name());
 		}else {
 			session.setAttribute("alert", "아이디 또는 비밀번호가 틀렸습니다.");
 			path = "/view/user/login.jsp";

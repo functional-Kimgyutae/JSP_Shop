@@ -1,3 +1,5 @@
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="vo.PaginationVO"%>
 <%@page import="vo.ProductVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -7,7 +9,9 @@
     <%
     	ArrayList<ProductVO> list = (ArrayList)request.getAttribute("list");
 		String search =  (String)request.getAttribute("search");
-	    
+		int start =  Integer.parseInt(String.valueOf(request.getAttribute("start")));
+	    PaginationVO pVO = (PaginationVO)request.getAttribute("pVO");
+		DecimalFormat formatter = new DecimalFormat("###,###");
     %>
     
     <section class="con search product_list">
@@ -19,7 +23,7 @@
                 <button>검색하기</button>
             </div>
         </form>
-        <span class="total">255개</span>
+        <span class="total"><%= pVO.getTotal() %>개(<%= start %>/<%= pVO.getTotal()>start+8?start+8 : pVO.getTotal() %>)</span>
         <div class="list">
             	<% if(!list.isEmpty()) {%>
 	            	<ul>            		
@@ -31,10 +35,10 @@
                      		    	<div class="text">
                       					<h2>[<%= data.getName() %>]</h2>
                       					<% if(data.getCount() == 0){ %>
-                       			    		<p><%= data.getPrice() %>원</p>
+                       			    		<p><%= formatter.format(data.getPrice()) %>원</p>
                       					<%}else{%>
-                      						<p><span class="count"><%= data.getCount() %>%</span><%= Math.ceil(data.getPrice()-(data.getPrice()*((float)data.getCount()/100))) %>원</p>                    			    	
-                      		 	    		<span class="before"><%= data.getPrice() %></span>                       			    	
+                      						<p><span class="count"><%= data.getCount() %>%</span><%= formatter.format(Math.round(data.getPrice()-(data.getPrice()*((float)data.getCount()/100)))) %>원</p>                    			    	
+                      		 	    		<span class="before"><%= formatter.format(data.getPrice()) %>원</span>                       			    	
                        			    	<%}%>
                 			   		</div>
                 			   		</a>
@@ -44,13 +48,18 @@
 		            </ul>
 						<div class="pg">
               			    <ul>
-               				     <li><a href="#">&lt;</a></li>
-                			    <li><a href="#">1</a></li>
-            			        <li><a href="#">2</a></li>
-			                    <li><a href="#">3</a></li>
-                    			<li><a href="#">4</a></li>
-                			    <li><a href="#">5</a></li>
-            			        <li><a href="#">&gt;</a></li>
+              			    	<% if(pVO.isPrev()){ %>
+               				     <li><a href="<%= request.getContextPath() %>/shop/search?search=<%= search %>&page=<%= pVO.getStart()-1 %>">&lt;</a></li>              			    	
+              			    	<%}
+              			    	for(int i= pVO.getStart();i <= pVO.getEnd();i++){
+                  			    %>
+                			    	<li><a href="<%= request.getContextPath() %>/shop/search?search=<%= search %>&page=<%= i %>"><%= i %></a></li>
+              			    	<%
+              			    	}
+              			    	if(pVO.isNext()){ 
+                  			    %> 
+            			        <li><a href="<%= request.getContextPath() %>/shop/search?search=<%= search %>&page=<%= pVO.getEnd()+1 %>">&gt;</a></li>
+              			    	<%} %>                			    
             			    </ul>
             			</div>
 					<%}else {%>

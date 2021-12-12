@@ -19,7 +19,7 @@ public class productController implements Controller {
 
 		ProductDAO dao = new ProductDAO();	
 		
-		String p_id = request.getParameter("p_id");
+		String p_id = request.getParameter("p_id"); 
 		
 		ProductVO vo = dao.getProduct(p_id);
 		

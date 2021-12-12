@@ -15,9 +15,7 @@ create table member(
 
 SELECT * FROM member;
 -- 집주소 가져오는 join
-SELECT m.m_id "m_id",m.m_name "email",m.m_phone "phone",m_email "email", da.m_address1,da.m_address2,da.m_address3
-    FROM member m
-    JOIN detail_address da ON m.m_id = da.m_id;
+SELECT m.m_id "m_id",m.m_name "name",m.m_phone "phone",m_email "email", da.m_address1,da.m_address2,da.m_address3 FROM member m JOIN detail_address da ON m.m_id = da.m_id where m.m_id = ? and m.m_psd = ?;
 -- 아이디 중복 비교
 SELECT m_id from member where id= '';
     
@@ -63,6 +61,9 @@ create table product (
 select * from product;
 
 select count(*) as cnt from product;
+
+select ROW_NUMBER() over (ORDER BY p_id) num, p.* from product p where p_exit= 1
+select * from(select ROW_NUMBER() over (ORDER BY p_id) num, p.* from product p where p_exit= 1)where num between 1 and 1;
 
 select * from product where p_id = 0;
 

@@ -99,6 +99,38 @@ public class UserDAO {
 		
 		return login;
 	}
-
 	
+	public UserVO getLoginProcess(String id,String psd) {
+		UserVO vo = new UserVO();
+	
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT m.m_id \"m_id\",m.m_name \"name\",m.m_phone \"phone\",m_email \"email\", da.m_address1,da.m_address2,da.m_address3 FROM member m JOIN detail_address da ON m.m_id = da.m_id where m.m_id = ? and m.m_psd = ?";
+	
+		conn = JdbcUtil.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, psd);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				vo.setM_id(rs.getString("m_id"));
+				vo.setM_name(rs.getString("name"));
+				vo.setM_phone(rs.getString("phone"));
+				vo.setM_email(rs.getString("email"));
+				vo.setM_address1(rs.getString("m_address1"));
+				vo.setM_address2(rs.getString("m_address2"));
+				vo.setM_address3(rs.getString("m_address3"));	
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("login중 db오류 발생");
+		}finally {
+			JdbcUtil.close(conn, pstmt, rs);
+		}
+		
+		return vo;
+	}
+		
 }

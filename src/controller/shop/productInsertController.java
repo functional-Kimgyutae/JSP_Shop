@@ -50,7 +50,7 @@ public class productInsertController implements Controller {
 
 		
 
-		int db_cnt = dao.productCnt();//번호 가져오기
+		int db_cnt = dao.productCntAll();//번호 가져오기
 		
 		int n = dao.productInsert(vo, db_cnt); // 기본정보 저장
 		
@@ -69,7 +69,7 @@ public class productInsertController implements Controller {
 			n = dao.productImageImsert(vo, db_cnt,i);	
 		}
 		
-		return new MyView("/index");
+		return new MyView("/shop/product?p_id="+db_cnt);
 	}
 
 }

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import controller.Controller;
 import controller.MyView;
 import dao.ProductDAO;
+import vo.PaginationVO;
 import vo.ProductVO;
 
 public class tagController implements Controller {
@@ -18,16 +19,29 @@ public class tagController implements Controller {
 	@Override
 	public MyView process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		PaginationVO pVO = new PaginationVO();
+		ProductDAO dao = new ProductDAO();
 		String tag = "";
-	    String[] tags = {"패션의류·잡화·뷰티","컴퓨터·디지털·가전","스포츠·건강·렌탈","자동차·공구","홈데코·문구","취미·반려","식품·생필품","핫 딜","베스트","빠른 배송","알뜰 쇼핑"};
+	   
 		if(request.getParameter("tag")!= null) {
 			tag = request.getParameter("tag");
 		}
-		ProductDAO dao = new ProductDAO();
-		ArrayList<ProductVO> list = dao.productTagList(tag);
+		int page = 1;
+		if(request.getParameter("page")!= null ) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+		int start = (page - 1)* pVO.getArt() + 1;
+	
+		
+		ArrayList<ProductVO> list = dao.productList("p_tag",tag,start);
+		
+		int total = dao.productCnt("p_tag",tag);
+		pVO.construct(total, page);
 		
 		request.setAttribute("list",list); 
-		request.setAttribute("tag", tags[Integer.parseInt(tag)]);
+		request.setAttribute("pVO", pVO);
+		request.setAttribute("tag", tag);
+		request.setAttribute("start", start);
 		return new MyView("/view/shop/tag.jsp");
 	}
 
