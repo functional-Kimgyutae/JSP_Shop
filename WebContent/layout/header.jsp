@@ -44,7 +44,8 @@
         <div id="header_logo" class="con">
 	   		<a href="<%= request.getContextPath()%>/index"><img src="<%= request.getContextPath() %>/data/design/logo.png" alt=""></a>         
         </div>
-        <div id="gnb" class="con">
+        <div id="gnb">
+        	<div class="con">
             <ul class="gnb">
                 <li><a href="#">전체 카테고리</a>
                     <ul class="slide">
@@ -73,6 +74,7 @@
             </div>
             <div id="cart">
             	<a href="<%= request.getContextPath() %>/shop/cart"><img src="<%= request.getContextPath() %>/data/design/shopping_cart.png" alt=""></a>
+            </div>
             </div>
         </div>
     </header>

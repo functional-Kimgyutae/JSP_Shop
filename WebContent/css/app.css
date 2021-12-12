@@ -61,7 +61,8 @@ header #user_menu > #list_menu > .after_bar::after {
     align-items: center;
     justify-content: center;
     margin: 15px auto;
-
+	z-index:1;
+	background-color: #fff;
 }
 
 #header_logo  img {
@@ -69,25 +70,28 @@ header #user_menu > #list_menu > .after_bar::after {
 }
 
 #gnb {
-    /* display: flex; */
+	width:100%;
     height: 40px;
-    position: relative;
+    box-shadow: 0px 7px 14px -9px #0002;
 }
-#gnb > .gnb {
+#gnb > .con {
+	position: relative;
+}
+#gnb  .gnb {
     display: flex;
     list-style: none;
 }
-#gnb > .gnb > li {
+#gnb  .gnb > li {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 140px;
     height: 40px;
 }
-#gnb > .gnb  >li:hover {
+#gnb  .gnb  >li:hover {
     border-bottom: 2px solid #444;
 }
-#gnb > .gnb  li a {
+#gnb  .gnb  li a {
     text-decoration: none;
     color: #111;
 }
@@ -349,6 +353,7 @@ footer p {
 .con > .list > ul > li .item > img{
     width: 100%; 
     height: 443px;
+    border:1px solid #3333;
 }
 
 .product_list {
@@ -378,7 +383,10 @@ footer p {
 .product_list .text p {
     font-size: 17px;
 }
-
+.product_list .item > a {
+	color:#000;
+	text-decoration: none;
+}
 .product_list .text .count {
     color: #f00;
     padding-right: 10px;
