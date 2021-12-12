@@ -116,6 +116,7 @@ public class UserDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				vo.setM_id(rs.getString("m_id"));
+				System.out.println("³ª´Ù"+rs.getString("m_id"));
 				vo.setM_name(rs.getString("name"));
 				vo.setM_phone(rs.getString("phone"));
 				vo.setM_email(rs.getString("email"));

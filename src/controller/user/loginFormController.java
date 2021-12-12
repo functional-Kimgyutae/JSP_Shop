@@ -39,9 +39,10 @@ public class loginFormController implements Controller {
 		
 		if(login) {
 			path = "/index";
-			UserVO vo = dao.getLoginProcess(id, psd);
-			session.setAttribute("userVO",vo);
+			UserVO vo = dao.getLoginProcess(id, sha256.change(psd));
 			session.setAttribute("user_id",vo.getM_name());
+			session.setAttribute("userVO",vo);
+			
 		}else {
 			session.setAttribute("alert", "아이디 또는 비밀번호가 틀렸습니다.");
 			path = "/view/user/login.jsp";

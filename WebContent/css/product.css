@@ -117,7 +117,7 @@
 
 .product .product_img {
     width: 1050px;
-    min-height: 100px;
+	padding:50px 0px;
 }
 .product .product_img img {
     width: 100%;

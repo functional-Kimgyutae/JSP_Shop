@@ -25,7 +25,7 @@ INSERT INTO member(m_id,m_psd,m_name,m_phone,m_email,m_gender)
 INSERT INTO member(m_id,m_psd,m_name,m_phone,m_email,m_gender) 
  VALUES ('admin','8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918','관리자','010-1234-5678','y2010109@y-y.hs.kr','1'); 
  
- 
+---------------------------------------------
 -- detail_address table 제작
 drop table detail_address;
 
@@ -41,7 +41,7 @@ INSERT INTO detail_address(m_id,m_address1,m_address2,m_address3)
     VALUES ('admin','ㅇㅁㄹ','12222','101호');
 INSERT INTO detail_address(m_id,m_address1,m_address2,m_address3)
     VALUES ('stop','경기도 광주','12222','101호');
-    
+---------------------------------------------
 drop table product;
 create table product (
     p_id int primary key,
@@ -69,6 +69,8 @@ select * from product where p_id = 0;
 
 INSERT INTO product(p_id,p_name,p_l_name,p_tag,p_price,p_count,p_cnt,p_unit,p_packaging,p_text) values ('0','상품1','상품2','1','10000','10','1','1개','냉장','ㅁㄴㅇㄻㄴㅇㄻㄴㅇㄹ');
 
+
+---------------------------------------------
 drop table detail_product;
 create table detail_product (
     idx number primary key,
@@ -85,3 +87,36 @@ drop sequence detail_idx;
 CREATE SEQUENCE detail_idx START WITH 0 minvalue 0 INCREMENT BY 1 NOCACHE;
     
 INSERT INTO DETAIL_PRODUCT (idx,p_id,p_img) values (detail_idx.NEXTVAL,'0','2');
+---------------------------------------------
+drop table cart;
+create table cart (
+	c_id number primary key,
+	p_id number,
+	m_id VARCHAR2(100),
+	c_cnt number,
+	constraint cart_p_id_fk FOREIGN key(p_id) REFERENCES product(p_id),
+	constraint cart_m_id_fk FOREIGN key(m_id) REFERENCES member(m_id)
+);
+select * from cart;
+CREATE SEQUENCE cart_idx START WITH 0 minvalue 0 INCREMENT BY 1 NOCACHE;
+
+INSERT INTO cart (c_id,p_id,m_id,c_cnt) values (cart_idx.NEXTVAL,?,?,?);
+
+SELECT c_id from cart where p_id = ? and m_id = ?; -- 이미 담겨있는지 확인
+
+DELETE FROM cart where c_id = ?; -- 삭제용
+
+UPDATE cart SET c_cnt = ? WHERE c_id = ?; -- 수정할때 쓸것
+
+SELECT c.c_id "c_id", p.p_id ,c.m_id , c.c_cnt ,p.p_price,dp.p_img 
+	FROM cart c
+	JOIN product p on c.p_id = p.p_id
+	INNER JOIN detail_product dp on p.p_id = dp.p_id
+	where c.m_id = 'admin'
+	GROUP BY p.p_id;
+
+-- 이건 여쭤보는걸로
+
+
+
+

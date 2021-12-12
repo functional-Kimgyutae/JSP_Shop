@@ -16,7 +16,7 @@
                 <img src="<%= data.getImage_list_value("0") %>" alt="">
             </div>
             <input type="hidden" class="p_id" value="<%= data.getP_id() %>">
-            <input type="hidden" class="p_price" value="<%= data.getPrice() %>">
+            <input type="hidden" class="p_price" value="<%= Math.ceil(data.getPrice()-(data.getPrice()*((float)data.getCount()/100))) %>">
 
             <div class="text">
                 <h2><%= data.getName() %><br><span><%= data.getL_name() %></span></h2>
@@ -43,7 +43,8 @@
                     </dl>
                     <dl>
                         <dt>구매수량</dt>
-                        <dd><button class="down">-</button><input type="number" class="cnt" value="1" readonly><button class="up">+</button></dd>
+                        <dd><span class="count"><button class="down">-</button><input type="number" class="cnt"
+                                    value="1" readonly><button class="up">+</button></span></dd>
                     </dl>
                 </div>
                 <p>총 상품금액:<span class="cost"><%= formatter.format(Math.ceil(data.getPrice()-(data.getPrice()*((float)data.getCount()/100)))) %></span>원</p>

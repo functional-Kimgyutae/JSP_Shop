@@ -5,21 +5,41 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import controller.MyView;
+import dao.CartDAO;
+import vo.CartVO;
+import vo.UserVO;
 
 public class putCartAjaxController implements Controller {
 
 	@Override
 	public MyView process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		String p_id = request.getParameter("p_id");
+		HttpSession session = request.getSession();
+		int p_id = Integer.parseInt(request.getParameter("p_id"));
 		int cnt = Integer.parseInt(request.getParameter("cnt"));
 		
+		UserVO uVO =  (UserVO) session.getAttribute("userVO");
+		System.out.println("과연?"+session.getAttribute("user_id"));
+		System.out.println("왜 그러는걸까"+uVO);
+		System.out.println("왜까"+uVO.getM_id());	
+		CartDAO dao = new CartDAO();
+		CartVO vo = new CartVO();
+		vo.setM_id(uVO.getM_id());
+		vo.setP_id(p_id);
+		vo.setC_cnt(cnt);
 		
-		return null;
+		
+		boolean b = dao.isExist(vo.getP_id(), vo.getM_id());
+		b = !b;
+		request.setAttribute("upload", b);		
+		if(b) {
+			int n = dao.cartInsert(vo);
+		}
+		return new MyView("/view/ajax.jsp");
 	}
 
 }

@@ -6,7 +6,7 @@ let check = 0;
     	$.ajax(
     		{
     			type:"POST",
-    			url:"<%= request.getContextPath() %>/ajax/check_id",
+    			url:"/Shop/ajax/check_id",
     			data:{id:document.frm.id.value},
     			dataType:"json",
     			success :  res => {
