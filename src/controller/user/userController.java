@@ -15,7 +15,18 @@ public class userController implements Controller {
 	@Override
 	public MyView process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		return new MyView("");
+		int page = 1;
+		if(request.getParameter("page")!= null ) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+		int show = 0;
+		if(request.getParameter("show")!= null ) {
+			show = Integer.parseInt(request.getParameter("show"));
+		}		
+		
+		request.setAttribute("show", show);
+		
+		return new MyView("/view/user/user.jsp");
 	}
 
 }

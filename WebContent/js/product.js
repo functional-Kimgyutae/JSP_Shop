@@ -28,7 +28,7 @@ if(document.querySelector(".not_login")) {
 	document.querySelector(".not_login").addEventListener("click", () => {
 	    let con = confirm("장바구니에 넣으실려면 로그인을 해야합니다. 로그인하시겠습니까?");
 	    if (con) {
-	        location.href = "/user/login.jsp";
+	        location.href = "/Shop/view/user/login.jsp";
 	    }
 	});	
 }
@@ -51,7 +51,7 @@ if(document.querySelector(".add_cart")){
 	                if (res.upload == "true") {
 	                    let con = confirm("장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?");
 	                    if (con) {
-	                        location.href = "/user/cart.jsp";
+	                        location.href = "/Shop/view/user/cart.jsp";
 	                    } else {
 	                        document.querySelector(".cnt").value = 1;
 	                        let str = Math.ceil(price);

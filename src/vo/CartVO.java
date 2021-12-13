@@ -1,17 +1,23 @@
 package vo;
 
 public class CartVO {
-	private String c_id;
+	private int c_id;
 	private int p_id;
 	private String m_id;
 	private int c_cnt;
 	private int p_price;
 	private String p_img;
-	
-	public String getC_id() {
+	private String p_name;
+	public String getP_name() {
+		return p_name;
+	}
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
+	public int getC_id() {
 		return c_id;
 	}
-	public void setC_id(String c_id) {
+	public void setC_id(int c_id) {
 		this.c_id = c_id;
 	}
 	public int getP_id() {

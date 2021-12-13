@@ -23,9 +23,6 @@ public class putCartAjaxController implements Controller {
 		int cnt = Integer.parseInt(request.getParameter("cnt"));
 		
 		UserVO uVO =  (UserVO) session.getAttribute("userVO");
-		System.out.println("과연?"+session.getAttribute("user_id"));
-		System.out.println("왜 그러는걸까"+uVO);
-		System.out.println("왜까"+uVO.getM_id());	
 		CartDAO dao = new CartDAO();
 		CartVO vo = new CartVO();
 		vo.setM_id(uVO.getM_id());

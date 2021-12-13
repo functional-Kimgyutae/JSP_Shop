@@ -1,4 +1,4 @@
--- user table Á¦ÀÛ
+-- user table ï¿½ï¿½ï¿½ï¿½
 drop table member;
 
 create table member(
@@ -7,26 +7,26 @@ create table member(
     m_name varchar2(100),
     m_phone varchar2(20),
     m_email varchar2(100),
-    m_emailCheck number default 1,-- ¹ÌÀÎÁõ : 1, ÀÎÁõ : 2 
-    m_exit number default 1, -- È°µ¿ : 1, Å»Åð : 2
+    m_emailCheck number default 1,-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : 1, ï¿½ï¿½ï¿½ï¿½ : 2 
+    m_exit number default 1, -- È°ï¿½ï¿½ : 1, Å»ï¿½ï¿½ : 2
     m_date date default sysdate,
-    m_gender number -- ¼±ÅÃ¾ÈÇÔ : 0 ³²ÀÚ: 1, ¿©ÀÚ : 2 
+    m_gender number -- ï¿½ï¿½ï¿½Ã¾ï¿½ï¿½ï¿½ : 0 ï¿½ï¿½ï¿½ï¿½: 1, ï¿½ï¿½ï¿½ï¿½ : 2 
 );
 
 SELECT * FROM member;
--- ÁýÁÖ¼Ò °¡Á®¿À´Â join
+-- ï¿½ï¿½ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ join
 SELECT m.m_id "m_id",m.m_name "name",m.m_phone "phone",m_email "email", da.m_address1,da.m_address2,da.m_address3 FROM member m JOIN detail_address da ON m.m_id = da.m_id where m.m_id = ? and m.m_psd = ?;
--- ¾ÆÀÌµð Áßº¹ ºñ±³
+-- ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ßºï¿½ ï¿½ï¿½
 SELECT m_id from member where id= '';
     
--- insert ¿¹½Ã
+-- insert ï¿½ï¿½ï¿½ï¿½
 INSERT INTO member(m_id,m_psd,m_name,m_phone,m_email,m_gender) 
- VALUES ('stop','1234','±è±ÔÅÂ','010-4621-9625','stoprabbit20@gmail.com','1') ;
+ VALUES ('stop','1234','ï¿½ï¿½ï¿½ï¿½ï¿½','010-4621-9625','stoprabbit20@gmail.com','1') ;
 INSERT INTO member(m_id,m_psd,m_name,m_phone,m_email,m_gender) 
- VALUES ('admin','8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918','°ü¸®ÀÚ','010-1234-5678','y2010109@y-y.hs.kr','1'); 
+ VALUES ('admin','8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','010-1234-5678','y2010109@y-y.hs.kr','1'); 
  
 ---------------------------------------------
--- detail_address table Á¦ÀÛ
+-- detail_address table ï¿½ï¿½ï¿½ï¿½
 drop table detail_address;
 
 create table detail_address(
@@ -38,9 +38,9 @@ create table detail_address(
 );
 SELECT * FROM detail_address;
 INSERT INTO detail_address(m_id,m_address1,m_address2,m_address3)
-    VALUES ('admin','¤·¤±¤©','12222','101È£');
+    VALUES ('admin','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','12222','101È£');
 INSERT INTO detail_address(m_id,m_address1,m_address2,m_address3)
-    VALUES ('stop','°æ±âµµ ±¤ÁÖ','12222','101È£');
+    VALUES ('stop','ï¿½ï¿½âµµ ï¿½ï¿½ï¿½ï¿½','12222','101È£');
 ---------------------------------------------
 drop table product;
 create table product (
@@ -56,7 +56,7 @@ create table product (
     p_text varchar2(3000),
     p_date date default sysdate,
     p_view number default 0,
-    p_exit number default 1 -- ±¸¸Å°¡´É : 1, »èÁ¦ : 2
+    p_exit number default 1 -- ï¿½ï¿½ï¿½Å°ï¿½ï¿½ï¿½ : 1, ï¿½ï¿½ï¿½ï¿½ : 2
 );
 select * from product;
 
@@ -67,7 +67,7 @@ select * from(select ROW_NUMBER() over (ORDER BY p_id) num, p.* from product p w
 
 select * from product where p_id = 0;
 
-INSERT INTO product(p_id,p_name,p_l_name,p_tag,p_price,p_count,p_cnt,p_unit,p_packaging,p_text) values ('0','»óÇ°1','»óÇ°2','1','10000','10','1','1°³','³ÃÀå','¤±¤¤¤·¤«¤¤¤·¤«¤¤¤·¤©');
+INSERT INTO product(p_id,p_name,p_l_name,p_tag,p_price,p_count,p_cnt,p_unit,p_packaging,p_text) values ('0','ï¿½ï¿½Ç°1','ï¿½ï¿½Ç°2','1','10000','10','1','1ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½');
 
 
 ---------------------------------------------
@@ -102,20 +102,18 @@ CREATE SEQUENCE cart_idx START WITH 0 minvalue 0 INCREMENT BY 1 NOCACHE;
 
 INSERT INTO cart (c_id,p_id,m_id,c_cnt) values (cart_idx.NEXTVAL,?,?,?);
 
-SELECT c_id from cart where p_id = ? and m_id = ?; -- ÀÌ¹Ì ´ã°ÜÀÖ´ÂÁö È®ÀÎ
+SELECT c_id from cart where p_id = ? and m_id = ?; -- ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 
-DELETE FROM cart where c_id = ?; -- »èÁ¦¿ë
+DELETE FROM cart where c_id = ?; -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-UPDATE cart SET c_cnt = ? WHERE c_id = ?; -- ¼öÁ¤ÇÒ¶§ ¾µ°Í
+UPDATE cart SET c_cnt = ? WHERE c_id = ?; -- ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-SELECT c.c_id "c_id", p.p_id ,c.m_id , c.c_cnt ,p.p_price,dp.p_img 
+SELECT c.c_id , p.p_id ,c.m_id , c.c_cnt ,p.p_price,dp.p_img 
 	FROM cart c
 	JOIN product p on c.p_id = p.p_id
 	INNER JOIN detail_product dp on p.p_id = dp.p_id
-	where c.m_id = 'admin'
-	GROUP BY p.p_id;
+	where c.m_id = 'admin';
 
--- ÀÌ°Ç ¿©Âåº¸´Â°É·Î
 
 
 

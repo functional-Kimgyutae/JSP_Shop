@@ -27,8 +27,6 @@ public class productController implements Controller {
 		
 		request.setAttribute("data",vo);
 		
-		UserVO uVO =(UserVO)session.getAttribute("userVO");
-		System.out.println(uVO.getM_name());
 		
 		return new MyView("/view/shop/product.jsp");
 	}
