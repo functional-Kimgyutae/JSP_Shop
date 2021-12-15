@@ -74,6 +74,7 @@
                 <img src="<%= request.getContextPath() %>/data/design/map.png" alt="">
             </div>
             <div id="cart">
+            
             	<a href="<%= request.getContextPath() %>/user/cart"><img src="<%= request.getContextPath() %>/data/design/shopping_cart.png" alt=""></a>
             </div>
             </div>

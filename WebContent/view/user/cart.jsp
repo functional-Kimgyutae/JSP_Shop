@@ -25,8 +25,8 @@
                     </div>
                     <span class="name"><a href="<%= request.getContextPath() %>/shop/product?p_id=<%= data.getP_id()  %>"><%= data.getP_name() %></a></span>
                     <div class="count">
-									<button type="button" data-idx="c_<%= data.getC_id() %>"" class="down">-</button><input type="number" class="cnt"
-                           value="<%= data.getC_cnt() %>" readonly><button type="button" data-idx="c_<%= data.getC_id() %>"class="up">+</button>
+									<button type="button" data-idx="<%= data.getC_id() %>"" class="down">-</button><input type="number" class="cnt"
+                           value="<%= data.getC_cnt() %>" readonly><button type="button" data-idx="<%= data.getC_id() %>"class="up">+</button>
                     </div>
                     <span class="pay"><span class="cost"><%= formatter.format(data.getP_price() * data.getC_cnt()) %></span>원</span>
                     <span class="close" data-idx="<%= data.getC_id() %>">X</span>

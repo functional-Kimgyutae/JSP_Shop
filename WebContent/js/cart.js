@@ -1,6 +1,7 @@
 			for(let div of document.querySelectorAll(".item")) {
 	            div.querySelector(".down").addEventListener("click", (e) => {
-	                let data = e.target.dataset.idx;
+	                let dat = e.target.dataset.idx;
+	                let data = "c_"+dat;
 	            	console.log(data);
 	                let cnt = div.querySelector(`#${data} .cnt`).value;
 	                let price = div.querySelector(`#${data} .p_price`).value;
@@ -12,12 +13,13 @@
 	                div.querySelector(`#${data} .cnt`).value = cnt;
 	                let str = cnt * price;
 	                div.querySelector(`#${data} .cost`).innerHTML = str.toLocaleString();
+	                mod(dat,cnt);
 	                calc();
 	            });
 	            
 	            div.querySelector(".up").addEventListener("click", (e) => {
-	                let data = e.target.dataset.idx;
-	                console.log(data);
+	                let dat = e.target.dataset.idx;
+	                let data = "c_"+dat;
 	                let cnt = div.querySelector(`#${data} .cnt`).value;
 	                let price = div.querySelector(`#${data} .p_price`).value;
 	                if (cnt == 100) {
@@ -28,9 +30,11 @@
 	                div.querySelector(`#${data} .cnt`).value = cnt;
 	                let str = cnt * price;
 	                div.querySelector(`#${data} .cost`).innerHTML = str.toLocaleString();
+	                mod(dat,cnt);
 	                calc();
 	            });
 	            div.querySelector(".close").addEventListener("click", (e) => {
+	            	del(e.target.dataset.idx);
 	            	div.remove();
 	                calc();
 	            });
@@ -54,3 +58,36 @@
             }
 
             calc();
+            
+            function mod(data,cnt) {
+            	console.log("mod");
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "/Shop/ajax/mod_cart",
+                        data: { 
+                                "c_id": data,
+                                "cnt":cnt
+                              },
+                        dataType: "json",
+                        success: res => {
+
+                        }, error: log => { console.log("실패" + log) }
+                    }
+                )
+            }
+            function del(data) {
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "/Shop/ajax/del_cart",
+                        data: { 
+                                "c_id": data
+                              },
+                        dataType: "json",
+                        success: res => {
+                            
+                        }, error: log => { console.log("실패" + log) }
+                    }
+                )
+            }
