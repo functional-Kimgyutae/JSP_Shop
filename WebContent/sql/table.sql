@@ -114,14 +114,15 @@ SELECT c.c_id , p.p_id ,c.m_id , c.c_cnt ,p.p_price,dp.p_img
 	INNER JOIN detail_product dp on p.p_id = dp.p_id
 	where c.m_id = 'admin';
 
-
+drop table orderList;
 create table orderList (
 	o_id number primary key,
 	m_id VARCHAR2 (100),
 	o_price number,
-	o_date date
+	o_date date default sysdate
 )
 CREATE SEQUENCE order_idx START WITH 0 minvalue 0 INCREMENT BY 1 NOCACHE;
 
 
+INSERT INTO orderList (o_id,m_id,o_price) values (order_idx.NEXTVAL,?,?);
 

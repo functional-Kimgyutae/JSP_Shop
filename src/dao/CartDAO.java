@@ -138,7 +138,13 @@ public class CartDAO {
 		
 		conn = JdbcUtil.getConnection();
 		try {
+			pstmt = conn.prepareStatement("select count(*) as cnt from orderList");
+			int cnt = 0;
+			while(rs.next()) {
+				cnt = rs.getInt("cnt");
+			}
 			pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setString(1, m_id);
 			pstmt.setInt(2, total);
 			pstmt.executeUpdate();
