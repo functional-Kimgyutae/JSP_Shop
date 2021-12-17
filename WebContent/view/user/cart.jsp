@@ -18,7 +18,7 @@
             <% if(list != null) {
            	  	for(CartVO data : list) {
            	%>
-            	<div class="item" id = "c_<%= data.getC_id() %>">
+            	<div class="item" id = "c_<%= data.getC_id() %>" data-idx="<%= data.getC_id() %>">
             		<input type="hidden" class="p_price" value="<%= data.getP_price() %>">
                     <div class="img">
                         <img src="<%= data.getP_img() %>" alt="">
@@ -43,7 +43,7 @@
                 <div><span>상품할인금액</span><span>-0원</span></div>
                 <div><span>배송비</span><span>+3,000원</span></div>
                 <div class="sp"><span>결제예정금액</span><span class="final">21,000원</span></div>
-                <div><button>결제하기</button></div>
+                <div><button type="button" class="purchase">결제하기</button></div>
             </div>
         </form>
     </section>

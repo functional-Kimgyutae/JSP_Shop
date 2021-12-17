@@ -1,4 +1,4 @@
--- user table ����
+-- user table 占쏙옙占쏙옙
 drop table member;
 
 create table member(
@@ -7,26 +7,26 @@ create table member(
     m_name varchar2(100),
     m_phone varchar2(20),
     m_email varchar2(100),
-    m_emailCheck number default 1,-- ������ : 1, ���� : 2 
-    m_exit number default 1, -- Ȱ�� : 1, Ż�� : 2
+    m_emailCheck number default 1,-- 占쏙옙占쏙옙占쏙옙 : 1, 占쏙옙占쏙옙 : 2 
+    m_exit number default 1, -- 활占쏙옙 : 1, 탈占쏙옙 : 2
     m_date date default sysdate,
-    m_gender number -- ���þ��� : 0 ����: 1, ���� : 2 
+    m_gender number -- 占쏙옙占시억옙占쏙옙 : 0 占쏙옙占쏙옙: 1, 占쏙옙占쏙옙 : 2 
 );
 
 SELECT * FROM member;
--- ���ּ� �������� join
+-- 占쏙옙占쌍쇽옙 占쏙옙占쏙옙占쏙옙占쏙옙 join
 SELECT m.m_id "m_id",m.m_name "name",m.m_phone "phone",m_email "email", da.m_address1,da.m_address2,da.m_address3 FROM member m JOIN detail_address da ON m.m_id = da.m_id where m.m_id = ? and m.m_psd = ?;
--- ���̵� �ߺ� ��
+-- 占쏙옙占싱듸옙 占쌩븝옙 占쏙옙
 SELECT m_id from member where id= '';
     
--- insert ����
+-- insert 占쏙옙占쏙옙
 INSERT INTO member(m_id,m_psd,m_name,m_phone,m_email,m_gender) 
- VALUES ('stop','1234','�����','010-4621-9625','stoprabbit20@gmail.com','1') ;
+ VALUES ('stop','1234','占쏙옙占쏙옙占�','010-4621-9625','stoprabbit20@gmail.com','1') ;
 INSERT INTO member(m_id,m_psd,m_name,m_phone,m_email,m_gender) 
- VALUES ('admin','8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918','������','010-1234-5678','y2010109@y-y.hs.kr','1'); 
+ VALUES ('admin','8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918','占쏙옙占쏙옙占쏙옙','010-1234-5678','y2010109@y-y.hs.kr','1'); 
  
 ---------------------------------------------
--- detail_address table ����
+-- detail_address table 占쏙옙占쏙옙
 drop table detail_address;
 
 create table detail_address(
@@ -38,9 +38,9 @@ create table detail_address(
 );
 SELECT * FROM detail_address;
 INSERT INTO detail_address(m_id,m_address1,m_address2,m_address3)
-    VALUES ('admin','������','12222','101ȣ');
+    VALUES ('admin','占쏙옙占쏙옙占쏙옙','12222','101호');
 INSERT INTO detail_address(m_id,m_address1,m_address2,m_address3)
-    VALUES ('stop','��⵵ ����','12222','101ȣ');
+    VALUES ('stop','占쏙옙竪� 占쏙옙占쏙옙','12222','101호');
 ---------------------------------------------
 drop table product;
 create table product (
@@ -56,7 +56,7 @@ create table product (
     p_text varchar2(3000),
     p_date date default sysdate,
     p_view number default 0,
-    p_exit number default 1 -- ���Ű��� : 1, ���� : 2
+    p_exit number default 1 -- 占쏙옙占신곤옙占쏙옙 : 1, 占쏙옙占쏙옙 : 2
 );
 select * from product;
 
@@ -67,7 +67,7 @@ select * from(select ROW_NUMBER() over (ORDER BY p_id) num, p.* from product p w
 
 select * from product where p_id = 0;
 
-INSERT INTO product(p_id,p_name,p_l_name,p_tag,p_price,p_count,p_cnt,p_unit,p_packaging,p_text) values ('0','��ǰ1','��ǰ2','1','10000','10','1','1��','����','��������������������');
+INSERT INTO product(p_id,p_name,p_l_name,p_tag,p_price,p_count,p_cnt,p_unit,p_packaging,p_text) values ('0','占쏙옙품1','占쏙옙품2','1','10000','10','1','1占쏙옙','占쏙옙占쏙옙','占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙');
 
 
 ---------------------------------------------
@@ -102,11 +102,11 @@ CREATE SEQUENCE cart_idx START WITH 0 minvalue 0 INCREMENT BY 1 NOCACHE;
 
 INSERT INTO cart (c_id,p_id,m_id,c_cnt) values (cart_idx.NEXTVAL,?,?,?);
 
-SELECT c_id from cart where p_id = ? and m_id = ?; -- �̹� ����ִ��� Ȯ��
+SELECT c_id from cart where p_id = ? and m_id = ?; -- 占싱뱄옙 占쏙옙占쏙옙獵占쏙옙占� 확占쏙옙
 
-DELETE FROM cart where c_id = ?; -- ������
+DELETE FROM cart where c_id = ?; -- 占쏙옙占쏙옙占쏙옙
 
-UPDATE cart SET c_cnt = ? WHERE c_id = ?; -- �����Ҷ� ����
+UPDATE cart SET c_cnt = ? WHERE c_id = ?; -- 占쏙옙占쏙옙占쌀띰옙 占쏙옙占쏙옙
 
 SELECT c.c_id , p.p_id ,c.m_id , c.c_cnt ,p.p_price,dp.p_img 
 	FROM cart c
@@ -115,6 +115,13 @@ SELECT c.c_id , p.p_id ,c.m_id , c.c_cnt ,p.p_price,dp.p_img
 	where c.m_id = 'admin';
 
 
+create table orderList (
+	o_id number primary key,
+	m_id VARCHAR2 (100),
+	o_price number,
+	o_date date
+)
+CREATE SEQUENCE order_idx START WITH 0 minvalue 0 INCREMENT BY 1 NOCACHE;
 
 
 

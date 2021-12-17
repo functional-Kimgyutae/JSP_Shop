@@ -14,6 +14,7 @@ import controller.admin.adminController;
 import controller.ajax.checkIdAjaxController;
 import controller.ajax.delCartAjaxController;
 import controller.ajax.modCartAjaxController;
+import controller.ajax.orderCartAjaxController;
 import controller.ajax.putCartAjaxController;
 import controller.shop.productController;
 import controller.shop.productInsertController;
@@ -60,6 +61,7 @@ public class FrontController extends HttpServlet {
 		controllerMap.put("/ajax/add_cart",new putCartAjaxController());
 		controllerMap.put("/ajax/mod_cart",new modCartAjaxController());
 		controllerMap.put("/ajax/del_cart",new delCartAjaxController());
+		controllerMap.put("/ajax/order_cart",new orderCartAjaxController());
 	}
 
 

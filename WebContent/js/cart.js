@@ -91,3 +91,37 @@
                     }
                 )
             }
+            
+            function purchase() {
+            	let dom = document.querySelectorAll(".item");
+            	let productArray = [];
+            	let cntArray = [];
+                let total = 0;
+                let cnt = 0;
+                let price = 0;
+                for(let item of dom) {
+                	let c_id = item.dataset.idx;
+                    cnt = item.querySelector(".cnt").value;
+                    price = item.querySelector(".p_price").value;
+                    total = total + (cnt*price);
+                    productArray.push(c_id);
+                    cntArray.push(cnt);
+                }
+            	$.ajax(
+                        {
+                            type: "POST",
+                            url: "/Shop/ajax/order_cart",
+                            data: { 
+                                    "total" : total,
+                                    "productArray" : productArray,
+                                    "cntArray" : cnt
+                                  },
+                            dataType: "json",
+                            success: res => {
+                                alert("주문이 완료되었습니다.");
+                                location.href("/Shop/index");
+                            }, error: log => { console.log("실패" + log) }
+                        }
+                    )
+            }
+            

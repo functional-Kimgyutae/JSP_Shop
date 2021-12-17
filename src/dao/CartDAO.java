@@ -130,4 +130,28 @@ public class CartDAO {
 	}
 
 		
+	public int orderList(int total,Object jsonDataProduct,Object jsonData) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT c_id from cart where p_id = ? and m_id = ?";
+		
+		conn = JdbcUtil.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, p_id);
+			pstmt.setString(2, m_id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				isExist = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("cart 중복 확인중  db오류 발생");
+		}finally {
+			JdbcUtil.close(conn, pstmt, rs);
+		}
+		
+		return  0;
+	}
 }
