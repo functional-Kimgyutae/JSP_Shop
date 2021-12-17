@@ -30,7 +30,7 @@ public class CartDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("cart Áßº¹ È®ÀÎÁß  db¿À·ù ¹ß»ý");
+			System.out.println("cart ï¿½ßºï¿½ È®ï¿½ï¿½ï¿½ï¿½  dbï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½");
 		}finally {
 			JdbcUtil.close(conn, pstmt, rs);
 		}
@@ -52,7 +52,7 @@ public class CartDAO {
 			n = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("cart insertÁß ¿À·ù¹ß»ý");
+			System.out.println("cart insertï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß»ï¿½");
 		}
 		
 		return n;
@@ -71,7 +71,7 @@ public class CartDAO {
 			n = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("cart updateÁß ¿À·ù¹ß»ý");
+			System.out.println("cart updateï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß»ï¿½");
 		}
 		return n;
 	}
@@ -88,12 +88,12 @@ public class CartDAO {
 			n = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("cart deleteÁß ¿À·ù¹ß»ý");
+			System.out.println("cart deleteï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß»ï¿½");
 		}
 		return n;
 	}
 
-//	join ¸¸µé¾î¾ßÇÔ ÁÖ¹®Å×ÀÌºí »ç¿ëÇÏ·Á¸é 
+//	join ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ 
 	public ArrayList<CartVO> cartList(String m_id) {
 		ArrayList<CartVO> list = new ArrayList<>();
 		
@@ -120,7 +120,7 @@ public class CartDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("Cart list °¡Á®¿À´ÂÁß db¿À·ù ¹ß»ý");
+			System.out.println("Cart list ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ dbï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½");
 		}finally {
 			JdbcUtil.close(conn, pstmt, rs);
 		}
@@ -130,24 +130,23 @@ public class CartDAO {
 	}
 
 		
-	public int orderList(int total,Object jsonDataProduct,Object jsonData) {
+	public int orderList(int total,Object jsonDataProduct,Object jsonData,String m_id) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT c_id from cart where p_id = ? and m_id = ?";
+		String sql = "INSERT INTO orderList (o_id,m_id,o_price) values (order_idx.NEXTVAL,?,?)";
 		
 		conn = JdbcUtil.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, p_id);
-			pstmt.setString(2, m_id);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				isExist = true;
-			}
+			pstmt.setString(1, m_id);
+			pstmt.setInt(2, total);
+			pstmt.executeUpdate();
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("cart Áßº¹ È®ÀÎÁß  db¿À·ù ¹ß»ý");
+			System.out.println("cart ï¿½ßºï¿½ È®ï¿½ï¿½ï¿½ï¿½  dbï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½");
 		}finally {
 			JdbcUtil.close(conn, pstmt, rs);
 		}
