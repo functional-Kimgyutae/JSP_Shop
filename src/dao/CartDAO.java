@@ -5,6 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Set;
+
+import org.json.simple.JSONObject;
 
 import common.JdbcUtil;
 import vo.CartVO;
@@ -130,7 +134,20 @@ public class CartDAO {
 	}
 
 		
-	public int orderList(int total,Object jsonDataProduct,Object jsonData,String m_id) {
+	public int orderList(int total,Object jsonDataProduct,Object jsonDataCnt,String m_id) {
+		ArrayList<String> ProductKeyList = new ArrayList<>();
+
+
+		JSONObject JsonProduct = (JSONObject) jsonDataProduct; 
+		JSONObject JsonCnt = (JSONObject) jsonDataCnt;
+		Set<String> productKeys = JsonProduct.keySet(); 
+		Set<String> Cntkeys = JsonCnt.keySet();
+		    while(i.hasNext())
+		    {
+		        String b = i.next().toString();
+		        ProductKeyList.add(b); // 키 값 저장
+		    }
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -144,7 +161,6 @@ public class CartDAO {
 				cnt = rs.getInt("cnt");
 			}
 			pstmt = conn.prepareStatement(sql);
-			
 			pstmt.setString(1, m_id);
 			pstmt.setInt(2, total);
 			pstmt.executeUpdate();

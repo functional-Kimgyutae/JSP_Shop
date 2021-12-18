@@ -92,8 +92,9 @@
                 )
             }
             
-            function purchase() {
+            document.querySelector(".purchase").addEventListener("click",(e)=> {          
             	let dom = document.querySelectorAll(".item");
+            	console.log("tbr");
             	let productArray = [];
             	let cntArray = [];
                 let total = 0;
@@ -123,5 +124,5 @@
                             }, error: log => { console.log("실패" + log) }
                         }
                     )
-            }
+            });
             
