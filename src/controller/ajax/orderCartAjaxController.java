@@ -20,6 +20,9 @@ public class orderCartAjaxController implements Controller {
 	@Override
 	public MyView process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+				// 수정중
+		boolean mod = false;
+		if(mod) {
 		int total = Integer.parseInt(request.getParameter("total"));
 		String jsonDataProduct = request.getParameter("productArray").toString();
 		String jsonDataCnt = request.getParameter("productCnt").toString(); 
@@ -42,10 +45,13 @@ public class orderCartAjaxController implements Controller {
 		
 
 		CartDAO dao = new CartDAO();
-//		int n = dao.orderList(total, Product, Cnt, );
-//		request.setAttribute("n", );
-		System.out.println("������� �Դ�");
 		return new MyView("/view/ajax.jsp");
+		}else {
+			// 삭제 넣기
+
+			return new MyView("/view/ajax.jsp");
+		}
+
 	}
 
 }

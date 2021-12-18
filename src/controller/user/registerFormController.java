@@ -19,22 +19,21 @@ public class registerFormController implements Controller {
 	@Override
 	public MyView process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		dao Ã³¸®
 		UserDAO dao = new UserDAO();
 		UserVO vo = new UserVO();
 		SHA256 sha256 = new SHA256();
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		String path = "";
 		
-		vo.setM_id(request.getParameter("id"));
-		vo.setM_psd(sha256.change(request.getParameter("password")));
-		vo.setM_name(request.getParameter("name"));
-		vo.setM_email(request.getParameter("email"));
-		vo.setM_phone(request.getParameter("number"));
-		vo.setM_address1(request.getParameter("addr"));
-		vo.setM_address2(request.getParameter("addr1"));
-		vo.setM_address3(request.getParameter("addr2"));
-		vo.setM_gender(Integer.parseInt(request.getParameter("gender")));
+		vo.setmId(request.getParameter("id"));
+		vo.setmPsd(sha256.change(request.getParameter("password")));
+		vo.setmName(request.getParameter("name"));
+		vo.setmEmail(request.getParameter("email"));
+		vo.setmPhone(request.getParameter("number"));
+		vo.setmAddress1(request.getParameter("addr"));
+		vo.setmAddress2(request.getParameter("addr1"));
+		vo.setmAddress3(request.getParameter("addr2"));
+		vo.setmGender(Integer.parseInt(request.getParameter("gender")));
 		
 		int n = dao.registerProcess(vo);
 		

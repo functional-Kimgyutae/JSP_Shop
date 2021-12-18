@@ -17,7 +17,7 @@ public class logoutController implements Controller {
 			throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		session.removeAttribute("user_id");
+		session.removeAttribute("userId");
 		session.removeAttribute("userVO");
 		return new MyView("/view/index.jsp");
 	}

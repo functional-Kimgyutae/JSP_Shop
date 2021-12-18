@@ -34,7 +34,7 @@
                             </tr>
                             <tr>
                                 <th>소제목</th>
-                                <td><input type="text" name="l_title" id="l_title" maxlength='15'></td>
+                                <td><input type="text" name="l_title" id="lTitle" maxlength='15'></td>
                             </tr>
                             <tr>
                                 <th>태그</th>

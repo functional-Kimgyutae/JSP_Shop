@@ -32,9 +32,9 @@ public class searchController implements Controller {
 		int start = (page - 1)* pVO.getArt() + 1;
 	
 		
-		ArrayList<ProductVO> list = dao.productList("p_name",search,start);
+		ArrayList<ProductVO> list = dao.productList("pName",search,start);
 		
-		int total = dao.productCnt("p_name",search);
+		int total = dao.productCnt("pName",search);
 		pVO.construct(total, page);
 		
 		request.setAttribute("list",list); 

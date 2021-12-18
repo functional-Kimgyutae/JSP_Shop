@@ -14,8 +14,7 @@ public class JdbcUtil {
 			Class.forName("oracle.jdbc.OracleDriver");
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "1234");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			System.out.println("DB ·ÎµåÁß ¿À·ù¹ß»ý");
+			System.out.println("DB ì—°ê²° ì˜¤ë¥˜");
 			e.printStackTrace();
 		}
 		
@@ -27,8 +26,7 @@ public class JdbcUtil {
 			try {
 				pstmt.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				System.out.println("pstmt.close() ¿À·ù¹ß»ý");
+				System.out.println("pstmt.close() ì˜¤ë¥˜");
 				e.printStackTrace();
 			}
 		}
@@ -36,8 +34,7 @@ public class JdbcUtil {
 			try {
 				conn.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				System.out.println("conn.close() ¿À·ù¹ß»ý");
+				System.out.println("conn.close() ì˜¤ë¥˜");
 				e.printStackTrace();
 			}
 		}
@@ -48,8 +45,7 @@ public class JdbcUtil {
 			try {
 				pstmt.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				System.out.println("pstmt.close() ¿À·ù¹ß»ý");
+				System.out.println("pstmt.close() ì˜¤ë¥˜");
 				e.printStackTrace();
 			}
 		}

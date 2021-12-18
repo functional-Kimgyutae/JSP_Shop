@@ -11,10 +11,7 @@ public class mainController implements Controller {
 	@Override
 	public MyView process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// db
-		
-		
+			// 메인페이지 상품 들고오기 추가 필요
 		return new MyView("/view/index.jsp");
 	}
-
 }

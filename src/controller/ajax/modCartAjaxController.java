@@ -16,13 +16,15 @@ public class modCartAjaxController implements Controller {
 	@Override
 	public MyView process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int c_id = Integer.parseInt(request.getParameter("c_id"));
+		int cId = Integer.parseInt(request.getParameter("cId"));
 		int cnt = Integer.parseInt(request.getParameter("cnt"));
 		
 		CartDAO dao = new CartDAO();
-		int n = dao.cartUpdate(c_id,cnt);
+		
+		int n = dao.cartUpdate(cId,cnt);
+		
 		request.setAttribute("n", n);
-		System.out.println("여기까지 왔다");
+		
 		return new MyView("/view/ajax.jsp");
 	}
 

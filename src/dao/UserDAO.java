@@ -10,14 +10,14 @@ import common.JdbcUtil;
 import vo.UserVO;
 
 public class UserDAO {
-	
+	//ë¡œê·¸ì¸ í™•ì¸
 	public boolean confirmId (String id) {
 		boolean same = false;
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT m_id from member where m_id = ?";
+		String sql = "SELECT mId from member where mId = ?";
 		
 		conn = JdbcUtil.getConnection();
 		try {
@@ -30,56 +30,56 @@ public class UserDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("comfirmId db¿À·ù ¹ß»ı");
+			System.out.println("comfirmId db ì˜¤ë¥˜ ë°œìƒ ");
 		}finally {
 			JdbcUtil.close(conn, pstmt, rs);
 		}
 		
 		return same;
 	}
-	
+	// íšŒì›ê°€ì… 
 	public int registerProcess(UserVO vo) {
 		int s1 = 0;
 		int s2 = 0;
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO member(m_id,m_psd,m_name,m_phone,m_email,m_gender) VALUES (?,?,?,?,?,?)";
+		String sql = "INSERT INTO member(mId,mPsd,mName,mPhone,mEmail,mGender) VALUES (?,?,?,?,?,?)";
 		
-		String sql1 = "INSERT INTO detail_address(m_id,m_address1,m_address2,m_address3) VALUES (?,?,?,?)";
+		String sql1 = "INSERT INTO detailAddress(mId,mAddress1,mAddress2,mAddress3) VALUES (?,?,?,?)";
 		conn = JdbcUtil.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vo.getM_id());
-			pstmt.setString(2,vo.getM_psd());
-			pstmt.setString(3,vo.getM_name());
-			pstmt.setString(4,vo.getM_phone());
-			pstmt.setString(5,vo.getM_email());
-			pstmt.setInt(6,vo.getM_gender());
+			pstmt.setString(1, vo.getMId());
+			pstmt.setString(2,vo.getMPsd());
+			pstmt.setString(3,vo.getMName());
+			pstmt.setString(4,vo.getMPhone());
+			pstmt.setString(5,vo.getMEmail());
+			pstmt.setInt(6,vo.getMGender());
 			
 			s1 = pstmt.executeUpdate();
 			
 			pstmt = conn.prepareStatement(sql1);
-			pstmt.setString(1, vo.getM_id());
-			pstmt.setString(2,vo.getM_address1());
-			pstmt.setString(3,vo.getM_address2());
-			pstmt.setString(4,vo.getM_address3());
+			pstmt.setString(1, vo.getMId());
+			pstmt.setString(2,vo.getMAddress1());
+			pstmt.setString(3,vo.getMAddress2());
+			pstmt.setString(4,vo.getMAddress3());
 			
 			s2 = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("insertÁß ¿À·ù¹ß»ı");
+			System.out.println("íšŒì›ê°€ì… ì¤‘ ì˜¤ë¥˜ ë°œìƒ");
 		}
 		return s1+s2;
 	}
-	
+	//ë¡œê·¸ì¸ í™•ì¸
 	public boolean loginProcess (String id,String psd) {
 		boolean login = false;
 	
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT m_id from member where m_id = ? and m_psd = ? and m_exit = 1";
+		String sql = "SELECT mId from member where mId = ? and mPsd = ? and mExit = 1";
 		
 		conn = JdbcUtil.getConnection();
 		try {
@@ -92,21 +92,21 @@ public class UserDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("loginÁß db¿À·ù ¹ß»ı");
+			System.out.println("login í™•ì¸ì¤‘ ì˜¤ë¥˜ ë°œìƒ");
 		}finally {
 			JdbcUtil.close(conn, pstmt, rs);
 		}
 		
 		return login;
 	}
-	
+	// ê°œì¸ì •ë³´ ê°€ì ¸ì˜¤ê¸°
 	public UserVO getLoginProcess(String id,String psd) {
 		UserVO vo = new UserVO();
 	
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT m.m_id \"m_id\",m.m_name \"name\",m.m_phone \"phone\",m_email \"email\", da.m_address1,da.m_address2,da.m_address3 FROM member m JOIN detail_address da ON m.m_id = da.m_id where m.m_id = ? and m.m_psd = ?";
+		String sql = "SELECT m.mId \"mId\",m.mName \"name\",m.mPhone \"phone\",mEmail \"email\", da.mAddress1,da.mAddress2,da.mAddress3 FROM member m JOIN detailAddress da ON m.mId = da.mId where m.mId = ? and m.mPsd = ?";
 	
 		conn = JdbcUtil.getConnection();
 		try {
@@ -115,22 +115,21 @@ public class UserDAO {
 			pstmt.setString(2, psd);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				vo.setM_id(rs.getString("m_id"));
-				System.out.println("³ª´Ù"+rs.getString("m_id"));
-				vo.setM_name(rs.getString("name"));
-				vo.setM_phone(rs.getString("phone"));
-				vo.setM_email(rs.getString("email"));
-				vo.setM_address1(rs.getString("m_address1"));
-				vo.setM_address2(rs.getString("m_address2"));
-				vo.setM_address3(rs.getString("m_address3"));	
+				vo.setMId(rs.getString("mId"));
+				System.out.println("ï¿½ï¿½ï¿½ï¿½"+rs.getString("mId"));
+				vo.setMName(rs.getString("name"));
+				vo.setMPhone(rs.getString("phone"));
+				vo.setMEmail(rs.getString("email"));
+				vo.setMAddress1(rs.getString("mAddress1"));
+				vo.setMAddress2(rs.getString("mAddress2"));
+				vo.setMAddress3(rs.getString("mAddress3"));	
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("loginÁß db¿À·ù ¹ß»ı");
+			System.out.println("login ì •ë³´ ê°€ì ¸ì˜¤ëŠ”ì¤‘ ì˜¤ë¥˜ ë°œìƒ");
 		}finally {
 			JdbcUtil.close(conn, pstmt, rs);
 		}
-		
 		return vo;
 	}
 		

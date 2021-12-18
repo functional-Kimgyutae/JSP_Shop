@@ -38,7 +38,7 @@ public class productInsertController implements Controller {
 		int cnt = Integer.parseInt(multi.getParameter("cnt"));
 
 		vo.setName(multi.getParameter("title"));
-		vo.setL_name(multi.getParameter("l_title"));
+		vo.setlName(multi.getParameter("lTitle"));
 		vo.setTag(Integer.parseInt(multi.getParameter("tag")));
 		vo.setPrice(Integer.parseInt(multi.getParameter("price")));
 		vo.setCount(Integer.parseInt(multi.getParameter("count")));
@@ -46,30 +46,27 @@ public class productInsertController implements Controller {
 		vo.setUnit(multi.getParameter("unit"));
 		vo.setPackaging(multi.getParameter("packaging"));
 		vo.setText(multi.getParameter("text"));
+	
+		int dbCnt = dao.productCntAll();
 		
-
-		
-
-		int db_cnt = dao.productCntAll();//¹øÈ£ °¡Á®¿À±â
-		
-		int n = dao.productInsert(vo, db_cnt); // ±âº»Á¤º¸ ÀúÀå
+		int n = dao.productInsert(vo, dbCnt);
 		
 		if(n == 0) {
-			session.setAttribute("alert", "insert ¿À·ù ¹ß»ı");
+			session.setAttribute("alert", "insert ì¤‘ ì˜¤ë¥˜ ë°œìƒ");
 			return new MyView("/admin/admin");
 		}
 
 		for (int i = 0; i <=cnt ; i++) {
-			String url = FileUpload.fileUp(multi, path, db_cnt, i);
-			vo.setImage_list(i+"", url);
+			String url = FileUpload.fileUp(multi, path, dbCnt, i);
+			vo.setImageIist(i+"", url);
 		}
 		
 		
 		for (int i = 0; i <= cnt; i++) {
-			n = dao.productImageImsert(vo, db_cnt,i);	
+			n = dao.productImageImsert(vo, dbCnt,i);	
 		}
 		
-		return new MyView("/shop/product?p_id="+db_cnt);
+		return new MyView("/shop/product?p_id="+dbCnt);
 	}
 
 }

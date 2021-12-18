@@ -22,13 +22,13 @@ public class cartController implements Controller {
 		HttpSession session = request.getSession();
 		
 		if(session.getAttribute("userVO") == null) {
-			session.setAttribute("alert", "·Î±×ÀÎÈÄ ÀÌ¿ë°¡´ÉÇÕ´Ï´Ù.");
+			session.setAttribute("alert", "ë¡œê·¸ì¸í›„ ì´ìš©ê°€ëŠ¥í•©ë‹ˆë‹¤.");
 			return new MyView("/view/user/login.jsp");
 		}
 		UserVO uVO = (UserVO)session.getAttribute("userVO");
 		CartDAO dao = new CartDAO();
 		
-		ArrayList<CartVO> list = dao.cartList(uVO.getM_id());
+		ArrayList<CartVO> list = dao.cartList(uVO.getmId());
 		
 		request.setAttribute("list", list);
 		

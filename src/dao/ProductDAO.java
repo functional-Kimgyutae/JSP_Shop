@@ -12,6 +12,7 @@ import common.JdbcUtil;
 import vo.ProductVO;
 
 public class ProductDAO {
+	//ìƒí’ˆ ì „ì²´ ê°¯ìˆ˜ ê°€ì ¸ì˜¤ê¸°
 	public int productCntAll() {
 		int n = 0;
 		Connection conn = null;
@@ -28,19 +29,19 @@ public class ProductDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("cnt±¸ÇÏ´ÂÁß db¿À·ù ¹ß»ı");
+			System.out.println("product í…Œì´ë¸” ê°œìˆ˜ ê°€ì ¸ì˜¤ëŠ” ì¤‘ ì˜¤ë¥˜ ë°œìƒ");
 		}finally {
 			JdbcUtil.close(conn, pstmt, rs);
 		}
 		return n;
 	}
-	
+	//ìƒí’ˆ ì‹¤ì œ ê°¯ìˆ˜ ê°€ì ¸ì˜¤ê¸°
 	public int productCnt(String type,String value) {
 		int n = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select count(*) as cnt from product where "+ type +" like ? and p_exit = 1";
+		String sql = "select count(*) as cnt from product where "+ type +" like ? and pExit = 1";
 		conn = JdbcUtil.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -51,25 +52,25 @@ public class ProductDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("cnt±¸ÇÏ´ÂÁß db¿À·ù ¹ß»ı");
+			System.out.println("product ì‹¤ ì‚¬ìš©ê°€ëŠ¥í•œ ìƒí’ˆ ê°œìˆ˜ ê°€ì ¸ì˜¤ëŠ” ì¤‘ ì˜¤ë¥˜ ë°œìƒ");
 		}finally {
 			JdbcUtil.close(conn, pstmt, rs);
 		}
 		return n;
 	}
-	
+	//ìƒí’ˆ ë„£ê¸° 
 	public int productInsert(ProductVO vo,int cnt) {
 		int n = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO product(p_id,p_name,p_l_name,p_tag,p_price,p_count,p_cnt,p_unit,p_packaging,p_text) values (?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO product(pId,pName,pLName,pTag,pPrice,pCount,pCnt,pUnit,pPackaging,pText) values (?,?,?,?,?,?,?,?,?,?)";
 		
 		conn = JdbcUtil.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,cnt+"");
 			pstmt.setString(2,vo.getName());
-			pstmt.setString(3,vo.getL_name());
+			pstmt.setString(3,vo.getLName());
 			pstmt.setInt(4,vo.getTag());
 			pstmt.setInt(5,vo.getPrice());
 			pstmt.setInt(6,vo.getCount());
@@ -82,41 +83,41 @@ public class ProductDAO {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("insertÁß ¿À·ù¹ß»ı");
+			System.out.println("product insertì¤‘ ì˜¤ë¥˜ ë°œìƒ");
 		}
 		
 		return n;
 	}
-
+	//ìƒí’ˆ ì´ë¯¸ì§€ ë„£ê¸°
 	public int productImageImsert(ProductVO vo,int cnt,int index) {
 		int n = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO DETAIL_PRODUCT (idx,p_id,p_img) values (detail_idx.NEXTVAL,?,?)";
+		String sql = "INSERT INTO DETAILPRODUCT (idx,pId,pImg) values (detailIdx.NEXTVAL,?,?)";
 		
 		conn = JdbcUtil.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1,cnt);
-			pstmt.setString(2,vo.getImage_list_value(index+""));
+			pstmt.setString(2,vo.getImageListValue(index+""));
 			n = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("img InsertÁß ¿À·ù¹ß»ı");
+			System.out.println("img Insertë„£ëŠ”ì¤‘ ì˜¤ë¥˜ ë°œìƒ");
 		}
 		
 		return n;
 	}
-
+	//ìƒí’ˆ list ê°€ì ¸ì˜¤ê¸° 
 	public ArrayList<ProductVO> productList(String type,String value,int start) {
 		ArrayList<ProductVO> list = new ArrayList<>();
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		ResultSet rs_img = null;
-		String sql = "select * from(select ROW_NUMBER() over (ORDER BY p_id) num, p.* from product p where "+type+" like ? and p_exit = 1)where num between ? and ?";
+		ResultSet rsImg = null;
+		String sql = "select * from(select ROW_NUMBER() over (ORDER BY pId) num, p.* from product p where "+type+" like ? and pExit = 1)where num between ? and ?";
 		
 		conn = JdbcUtil.getConnection();
 		try {
@@ -127,76 +128,75 @@ public class ProductDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				ProductVO vo = new ProductVO();
-				vo.setP_id(rs.getString("p_id"));
-				vo.setName(rs.getString("p_name"));
-				vo.setL_name(rs.getString("p_l_name"));
-				vo.setTag(Integer.parseInt(rs.getString("p_tag")));
-				vo.setPrice(Integer.parseInt(rs.getString("p_price")));
-				vo.setCount(Integer.parseInt(rs.getString("p_count")));
-				vo.setCnt(Integer.parseInt(rs.getString("p_cnt")));
-				vo.setUnit(rs.getString("p_unit"));
-				vo.setPackaging(rs.getString("p_packaging"));
-				vo.setText(rs.getString("p_text"));
-				vo.setView(Integer.parseInt(rs.getString("p_view")));
-				sql = "select p_img from detail_product where p_id = ?";
+				vo.setPId(rs.getString("pId"));
+				vo.setName(rs.getString("pName"));
+				vo.setL_name(rs.getString("pLName"));
+				vo.setTag(Integer.parseInt(rs.getString("pTag")P;
+				C.setPrCe(InUger.pPseInt(rs.gTString("pPrice")));
+				vo.setCount(Integer.parseInt(rs.getString("pCount")));
+				vo.setCnt(Integer.parseInt(rs.getString("pCnt")));
+				vo.setUnit(rs.getString("pUnit"));
+				vo.setPackaging(rs.getString("pPackaging"));
+				vo.setText(rs.getString("pText"));
+				vo.setView(Integer.parseInt(rs.getString("pView")));
+				sql = "select pImg from detailProduct where pId = ?";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1,rs.getString("p_id"));				
-				rs_img = pstmt.executeQuery();
+				pstmt.setString(1,rs.getString("pId"));				
+				rsImg = pstmt.executeQuery();
 				int i = 0;
-				while(rs_img.next()) {
-					vo.setImage_list(i+"",rs_img.getString("p_img"));
+				while(rsImg.next()) {
+					vo.setImage_list(i+"",rsImg.getString("pImg"));
 					i++;
 				}
 				list.add(vo);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("product list °¡Á®¿À´ÂÁß db¿À·ù ¹ß»ı");
+			System.out.println("product list ê²€ìƒ‰í•´ì„œ ê°€ì ¸ì˜¤ëŠ”ì¤‘ ì˜¤ë¥˜ ë°œìƒ");
 		}finally {
 			JdbcUtil.close(conn, pstmt, rs);
 		}
 		
 		return list;
-	}
-
-
-	public ProductVO getProduct(String p_id) {
+	}	
+	//ìƒí’ˆ í•˜ë‚˜ ê°€ì ¸ì˜¤ê¸°
+	public ProductVO getProduct(String pId) {
 		ProductVO vo = new ProductVO();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		ResultSet rs_img = null;
-		String sql = "select * from product where p_id = ? and p_exit = 1  ";
+		ResultSet rsImg = null;
+		String sql = "select * from product where pId = ? and pExit = 1  ";
 		conn = JdbcUtil.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, p_id);
+			pstmt.setString(1, pId);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				vo.setP_id(rs.getString("p_id"));
-				vo.setName(rs.getString("p_name"));
-				vo.setL_name(rs.getString("p_l_name"));
-				vo.setTag(Integer.parseInt(rs.getString("p_tag")));
-				vo.setPrice(Integer.parseInt(rs.getString("p_price")));
-				vo.setCount(Integer.parseInt(rs.getString("p_count")));
-				vo.setCnt(Integer.parseInt(rs.getString("p_cnt")));
-				vo.setUnit(rs.getString("p_unit"));
-				vo.setPackaging(rs.getString("p_packaging"));
-				vo.setText(rs.getString("p_text"));
-				vo.setView(Integer.parseInt(rs.getString("p_view")));
-				sql = "select p_img from detail_product where p_id = ?";
+				vo.setPId(rs.getString("pId"));
+				vo.setName(rs.getString("pName"));
+				vo.setL_name(rs.getString("pLName"));
+				vo.setTag(Integer.parseInt(rs.getString("pTag")P;
+				C.setPrCe(InUger.pPseInt(rs.gTString("pPrice")));
+				vo.setCount(Integer.parseInt(rs.getString("pCount")));
+				vo.setCnt(Integer.parseInt(rs.getString("pCnt")));
+				vo.setUnit(rs.getString("pUnit"));
+				vo.setPackaging(rs.getString("pPackaging"));
+				vo.setText(rs.getString("pText"));
+				vo.setView(Integer.parseInt(rs.getString("pView")));
+				sql = "select pImg from detailProduct where pId = ?";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1,rs.getString("p_id"));				
-				rs_img = pstmt.executeQuery();
+				pstmt.setString(1,rs.getString("pId"));				
+				rsImg = pstmt.executeQuery();
 				int i = 0;
-				while(rs_img.next()) {
-					vo.setImage_list(i+"",rs_img.getString("p_img"));
+				while(rsImg.next()) {
+					vo.setImage_list(i+"",rsImg.getString("pImg"));
 					i++;
 				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("product list °¡Á®¿À´ÂÁß db¿À·ù ¹ß»ı");
+			System.out.println("product list ìƒí’ˆ í•˜ë‚˜ë§Œ ê°€ì ¸ì˜¤ëŠ”ì¤‘ ì˜¤ë¥˜ ë°œìƒ");
 		}finally {
 			JdbcUtil.close(conn, pstmt, rs);
 		}

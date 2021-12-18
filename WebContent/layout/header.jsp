@@ -28,11 +28,11 @@
     <header>
         <div id="user_menu" class="con">
             <ul id="list_menu">
-            	<% if(session.getAttribute("user_id") != null){ %>
-            		<% if(session.getAttribute("user_id").equals("admin")) {%>
+            	<% if(session.getAttribute("userId") != null){ %>
+            		<% if(session.getAttribute("userId").equals("admin")) {%>
                 		<li class="menu after_bar"><a href="<%= request.getContextPath() %>/admin/admin">어드민</a></li>
                 	<% }else{ %>
-                		<li class="menu after_bar"><a href="<%= request.getContextPath() %>/user/user"><%= session.getAttribute("user_id") %>님</a></li>
+                		<li class="menu after_bar"><a href="<%= request.getContextPath() %>/user/user"><%= session.getAttribute("userId") %>님</a></li>
                 	<% } %> 
                 		<li class="menu after_bar"><a href="<%= request.getContextPath() %>/user/logout">로그아웃</a></li>
                 <% } else { %>

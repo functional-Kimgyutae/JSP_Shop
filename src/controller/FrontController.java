@@ -30,33 +30,33 @@ import controller.user.userController;
 
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private HashMap<String, Controller> controllerMap = new HashMap<>(); // url매핑해서 container연결하기 위한 
+	private HashMap<String, Controller> controllerMap = new HashMap<>(); 
        
     public FrontController() {
     	super();
     }
 
 	public void init(ServletConfig config) throws ServletException {
-		// 메인페이지 로드
+		// index
 		controllerMap.put("/index", new mainController());
 		
-		//user 관련 페이지
+		//user 
 		controllerMap.put("/user/user", new userController());
 		controllerMap.put("/user/login", new loginFormController());
 		controllerMap.put("/user/register", new registerFormController());	
 		controllerMap.put("/user/logout", new logoutController());
 		controllerMap.put("/user/cart", new cartController());
 		
-		//admin 관련 페이지
+		//admin
 		controllerMap.put("/admin/admin", new adminController());	
 		
-		//shop 관련 페이지
+		//shop 
 		controllerMap.put("/shop/tag", new tagController());
 		controllerMap.put("/shop/product", new productController());
 		controllerMap.put("/shop/search", new searchController());
 		controllerMap.put("/shop/product_insert", new productInsertController());
 		
-		//ajax 쓰는 페이지
+		//ajax 
 		controllerMap.put("/ajax/check_id",new checkIdAjaxController());
 		controllerMap.put("/ajax/add_cart",new putCartAjaxController());
 		controllerMap.put("/ajax/mod_cart",new modCartAjaxController());

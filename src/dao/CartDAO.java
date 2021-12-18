@@ -15,116 +15,116 @@ import vo.CartVO;
 import vo.ProductVO;
 
 public class CartDAO {
-	public boolean isExist(int p_id,String m_id) {
+	// 카트내에 존재 하는지 확인
+	public boolean isExist(int pId,String mId) {
 		boolean isExist = false;
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT c_id from cart where p_id = ? and m_id = ?";
+		String sql = "SELECT cId from cart where pId = ? and mId = ?";
 		
 		conn = JdbcUtil.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, p_id);
-			pstmt.setString(2, m_id);
+			pstmt.setInt(1, pId);
+			pstmt.setString(2, mId);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				isExist = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("cart �ߺ� Ȯ����  db���� �߻�");
+			System.out.println("cart에 담겼는지 확인중 오류 발생");
 		}finally {
 			JdbcUtil.close(conn, pstmt, rs);
 		}
 		return isExist;
 	}
-	
+	// 카트에 상품 담기
 	public int cartInsert(CartVO vo) {
 		int n = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO cart (c_id,p_id,m_id,c_cnt) values (cart_idx.NEXTVAL,?,?,?)";
+		String sql = "INSERT INTO cart (cId,pId,mId,cCnt) values (cart_idx.NEXTVAL,?,?,?)";
 		conn = JdbcUtil.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, vo.getP_id());
-			pstmt.setString(2,vo.getM_id());
-			pstmt.setInt(3,vo.getC_cnt());
+			pstmt.setInt(1, vo.getPId());
+			pstmt.setString(2,vo.getMId());
+			pstmt.setInt(3,vo.getCCnt());
 
 			n = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("cart insert�� �����߻�");
+			System.out.println("cart insert중 오류 발생");
 		}
 		
 		return n;
 	}
-
-	public int cartUpdate(int c_id,int c_cnt) {
+	// 카트 상품 수량 업데이트
+	public int cartUpdate(int cId,int cCnt) {
 		int n = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "UPDATE cart SET c_cnt = ? WHERE c_id = ?";
+		String sql = "UPDATE cart SET cCnt = ? WHERE cId = ?";
 		conn = JdbcUtil.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1,c_cnt);
-			pstmt.setInt(2, c_id);
+			pstmt.setInt(1,cCnt);
+			pstmt.setInt(2, cId);
 			n = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("cart update�� �����߻�");
+			System.out.println("cart update중 오류 발생");
 		}
 		return n;
 	}
-	
-	public int cartDelete(int c_id) {
+	// 카트 상품 삭제
+	public int cartDelete(int cId) {
 		int n = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "DELETE FROM cart where c_id = ?";
+		String sql = "DELETE FROM cart where cId = ?";
 		conn = JdbcUtil.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, c_id);
+			pstmt.setInt(1, cId);
 			n = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("cart delete�� �����߻�");
+			System.out.println("cart delete 삭제중 오류 발생");
 		}
 		return n;
 	}
-
-//	join �������� �ֹ����̺� ����Ϸ��� 
-	public ArrayList<CartVO> cartList(String m_id) {
+	// 카트 품목 들고 오기
+	public ArrayList<CartVO> cartList(String mId) {
 		ArrayList<CartVO> list = new ArrayList<>();
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select c.c_id \"c_id\",a.p_id \"p_id\",c.m_id \"m_id\",c.c_cnt \"c_cnt\",p.p_price \"p_price\",a.minIdx \"idx\",b.p_img \"p_img\",p.p_name from (select p.p_id,min(dp.idx) minIdx from product p,detail_product dp where p.p_id = dp.p_id group by p.p_id order by p.p_id) a, DETAIL_PRODUCT b,cart c,product p where b.idx = a.minIdx and c.m_id = ? and a.p_id = c.p_id and a.p_id = p.p_id";
+		String sql = "select c.cId \"cId\",a.pId \"pId\",c.mId \"mId\",c.cCnt \"cCnt\",p.pPrice \"pPrice\",a.minIdx \"idx\",b.pImg \"pImg\",p.pName from (select p.pId,min(dp.idx) minIdx from product p,detailProduct dp where p.pId = dp.pId group by p.pId order by p.pId) a, DETAILPRODUCT b,cart c,product p where b.idx = a.minIdx and c.mId = ? and a.pId = c.pId and a.pId = p.pId";
 		
 		conn = JdbcUtil.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m_id);
+			pstmt.setString(1, mId);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				CartVO vo = new CartVO();
-				vo.setC_id(rs.getInt("c_id"));
-				vo.setP_id(rs.getInt("p_id"));
-				vo.setM_id(rs.getString("m_id"));
-				vo.setC_cnt(rs.getInt("c_cnt"));
-				vo.setP_price(rs.getInt("p_price"));
-				vo.setP_img(rs.getString("p_img"));		
-				vo.setP_name(rs.getString("p_name"));
+				vo.setCId(rs.getInt("cId"));
+				vo.setPId(rs.getInt("pId"));
+				vo.setMId(rs.getString("mId"));
+				vo.setCCnt(rs.getInt("cCnt"));
+				vo.setPPrice(rs.getInt("pPrice"));
+				vo.setPImg(rs.getString("pImg"));		
+				vo.setPName(rs.getString("pName"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("Cart list ���������� db���� �߻�");
+			System.out.println("Cart list 가져오는중 오류 발생");
 		}finally {
 			JdbcUtil.close(conn, pstmt, rs);
 		}
@@ -132,9 +132,8 @@ public class CartDAO {
 		return list;
 		
 	}
-
-		
-	public int orderList(int total,Object jsonDataProduct,Object jsonDataCnt,String m_id) {
+	// 주문하려고 값을 들고 오기 수정중 
+	public int orderList(int total,Object jsonDataProduct,Object jsonDataCnt,String mId) {
 		ArrayList<String> ProductKeyList = new ArrayList<>();
 
 
@@ -145,13 +144,13 @@ public class CartDAO {
 		    while(i.hasNext())
 		    {
 		        String b = i.next().toString();
-		        ProductKeyList.add(b); // 키 값 저장
+		        ProductKeyList.add(b); 
 		    }
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "INSERT INTO orderList (o_id,m_id,o_price) values (order_idx.NEXTVAL,?,?)";
+		String sql = "INSERT INTO orderList (oId,mId,oPrice) values (orderIdx.NEXTVAL,?,?)";
 		
 		conn = JdbcUtil.getConnection();
 		try {
@@ -161,14 +160,14 @@ public class CartDAO {
 				cnt = rs.getInt("cnt");
 			}
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m_id);
+			pstmt.setString(1, mId);
 			pstmt.setInt(2, total);
 			pstmt.executeUpdate();
 			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("cart �ߺ� Ȯ����  db���� �߻�");
+			System.out.println("cart 포기");
 		}finally {
 			JdbcUtil.close(conn, pstmt, rs);
 		}

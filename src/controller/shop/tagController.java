@@ -33,9 +33,9 @@ public class tagController implements Controller {
 		int start = (page - 1)* pVO.getArt() + 1;
 	
 		
-		ArrayList<ProductVO> list = dao.productList("p_tag",tag,start);
+		ArrayList<ProductVO> list = dao.productList("pTag",tag,start);
 		
-		int total = dao.productCnt("p_tag",tag);
+		int total = dao.productCnt("pTag",tag);
 		pVO.construct(total, page);
 		
 		request.setAttribute("list",list); 

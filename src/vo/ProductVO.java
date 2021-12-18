@@ -5,9 +5,9 @@ import java.util.HashMap;
 import controller.Controller;
 
 public class ProductVO {
-	private String p_id;
+	private String pId;
 	private String name;
-	private String l_name;
+	private String lName;
 	private int tag;
 	private int price;
 	private int count;
@@ -15,24 +15,24 @@ public class ProductVO {
 	private String unit;
 	private String packaging;
 	private String text;
-	private String image_url;
+	private String imageUrl;
 	private int view;
-	private HashMap<String, String> image_list = new HashMap<>();
+	private HashMap<String, String> imageList = new HashMap<>();
 	
-	public String getP_id() {
-		return p_id;
+	public String getPId() {
+		return pId;
 	}
-	public void setP_id(String p_id) {
-		this.p_id = p_id;
+	public void setPId(String pId) {
+		this.pId = pId;
 	}
-	public HashMap<String, String> getImage_list() {
-		return image_list;
+	public HashMap<String, String> getImageList() {
+		return imageList;
 	}
-	public String getImage_list_value(String key) {
-		return this.image_list.get(key);
+	public String getImageList_value(String key) {
+		return this.imageList.get(key);
 	}
-	public void setImage_list(String key,String value) {
-		this.image_list.put(key,value);
+	public void setImageList(String key,String value) {
+		this.imageList.put(key,value);
 	}
 
 	public String getName() {
@@ -41,11 +41,11 @@ public class ProductVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getL_name() {
-		return l_name;
+	public String getLName() {
+		return lName;
 	}
-	public void setL_name(String l_name) {
-		this.l_name = l_name;
+	public void setLName(String lName) {
+		this.lName = lName;
 	}
 	public int getTag() {
 		return tag;
@@ -89,11 +89,11 @@ public class ProductVO {
 	public void setText(String text) {
 		this.text = text;
 	}
-	public String getImage_url() {
-		return image_url;
+	public String getImageUrl() {
+		return imageUrl;
 	}
-	public void setImage_url(String image_url) {
-		this.image_url = image_url;
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 	public int getView() {
 		return view;

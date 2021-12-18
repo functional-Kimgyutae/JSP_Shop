@@ -3,68 +3,68 @@ package vo;
 import java.sql.Date;
 
 public class UserVO {
-	private String m_id;
-	private String m_psd;
-	private String m_name;
-	private String m_phone;
-	private String m_email;
-	private int m_gender;
-	private String m_address1;
-	private String m_address2;
-	private String m_address3;
+	private String mId;
+	private String mPsd;
+	private String mName;
+	private String mPhone;
+	private String mEmail;
+	private int mGender;
+	private String mAddress1;
+	private String mAddress2;
+	private String mAddress3;
+	public String getmId() {
+		return mId;
+	}
+	public void setmId(String mId) {
+		this.mId = mId;
+	}
+	public String getmPsd() {
+		return mPsd;
+	}
+	public void setmPsd(String mPsd) {
+		this.mPsd = mPsd;
+	}
+	public String getmName() {
+		return mName;
+	}
+	public void setmName(String mName) {
+		this.mName = mName;
+	}
+	public String getmPhone() {
+		return mPhone;
+	}
+	public void setmPhone(String mPhone) {
+		this.mPhone = mPhone;
+	}
+	public String getmEmail() {
+		return mEmail;
+	}
+	public void setmEmail(String mEmail) {
+		this.mEmail = mEmail;
+	}
+	public int getmGender() {
+		return mGender;
+	}
+	public void setmGender(int mGender) {
+		this.mGender = mGender;
+	}
+	public String getmAddress1() {
+		return mAddress1;
+	}
+	public void setmAddress1(String mAddress1) {
+		this.mAddress1 = mAddress1;
+	}
+	public String getmAddress2() {
+		return mAddress2;
+	}
+	public void setmAddress2(String mAddress2) {
+		this.mAddress2 = mAddress2;
+	}
+	public String getmAddress3() {
+		return mAddress3;
+	}
+	public void setmAddress3(String mAddress3) {
+		this.mAddress3 = mAddress3;
+	}
 	
-	public String getM_id() {
-		return m_id;
-	}
-	public void setM_id(String m_id) {
-		this.m_id = m_id;
-	}
-	public String getM_psd() {
-		return m_psd;
-	}
-	public void setM_psd(String m_psd) {
-		this.m_psd = m_psd;
-	}
-	public String getM_name() {
-		return m_name;
-	}
-	public void setM_name(String m_name) {
-		this.m_name = m_name;
-	}
-	public String getM_phone() {
-		return m_phone;
-	}
-	public void setM_phone(String m_phone) {
-		this.m_phone = m_phone;
-	}
-	public String getM_email() {
-		return m_email;
-	}
-	public void setM_email(String m_email) {
-		this.m_email = m_email;
-	}
-	public int getM_gender() {
-		return m_gender;
-	}
-	public void setM_gender(int m_gender) {
-		this.m_gender = m_gender;
-	}
-	public String getM_address1() {
-		return m_address1;
-	}
-	public void setM_address1(String m_address1) {
-		this.m_address1 = m_address1;
-	}
-	public String getM_address2() {
-		return m_address2;
-	}
-	public void setM_address2(String m_address2) {
-		this.m_address2 = m_address2;
-	}
-	public String getM_address3() {
-		return m_address3;
-	}
-	public void setM_address3(String m_address3) {
-		this.m_address3 = m_address3;
-	}
 }

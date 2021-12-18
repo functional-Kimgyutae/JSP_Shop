@@ -19,7 +19,7 @@
             <input type="hidden" class="p_price" value="<%= Math.ceil(data.getPrice()-(data.getPrice()*((float)data.getCount()/100))) %>">
 
             <div class="text">
-                <h2><%= data.getName() %><br><span><%= data.getL_name() %></span></h2>
+                <h2><%= data.getName() %><br><span><%= data.getLName() %></span></h2>
                 <p><span class="price"><%= formatter.format(Math.ceil(data.getPrice()-(data.getPrice()*((float)data.getCount()/100)))) %>원</span>
                 <% if(data.getCount() != 0) { %>
                 <span class="sale"><%= data.getCount() %>%</span><br><span class="before"><%= formatter.format(data.getPrice()) %>원</span></p>

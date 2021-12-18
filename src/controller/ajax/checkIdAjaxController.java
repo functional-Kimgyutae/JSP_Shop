@@ -14,13 +14,14 @@ public class checkIdAjaxController implements Controller {
 	@Override
 	public MyView process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		String id = request.getParameter("id");
+		
 		UserDAO dao = new UserDAO();
 		
 		boolean same = dao.confirmId(id);
 		
 		request.setAttribute("same", same);
+		
 		return new MyView("/view/ajax.jsp");
 	}
 

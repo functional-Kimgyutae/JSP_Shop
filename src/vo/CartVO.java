@@ -1,54 +1,54 @@
 package vo;
 
 public class CartVO {
-	private int c_id;
-	private int p_id;
-	private String m_id;
-	private int c_cnt;
-	private int p_price;
-	private String p_img;
-	private String p_name;
-	public String getP_name() {
-		return p_name;
+	private int cId;
+	private int pId;
+	private String mId;
+	private int cCnt;
+	private int pPrice;
+	private String pImg;
+	private String pName;
+	public int getcId() {
+		return cId;
 	}
-	public void setP_name(String p_name) {
-		this.p_name = p_name;
+	public void setcId(int cId) {
+		this.cId = cId;
 	}
-	public int getC_id() {
-		return c_id;
+	public int getpId() {
+		return pId;
 	}
-	public void setC_id(int c_id) {
-		this.c_id = c_id;
+	public void setpId(int pId) {
+		this.pId = pId;
 	}
-	public int getP_id() {
-		return p_id;
+	public String getmId() {
+		return mId;
 	}
-	public void setP_id(int p_id) {
-		this.p_id = p_id;
+	public void setmId(String mId) {
+		this.mId = mId;
 	}
-	public String getM_id() {
-		return m_id;
+	public int getcCnt() {
+		return cCnt;
 	}
-	public void setM_id(String m_id) {
-		this.m_id = m_id;
+	public void setcCnt(int cCnt) {
+		this.cCnt = cCnt;
 	}
-	public int getC_cnt() {
-		return c_cnt;
+	public int getpPrice() {
+		return pPrice;
 	}
-	public void setC_cnt(int c_cnt) {
-		this.c_cnt = c_cnt;
+	public void setpPrice(int pPrice) {
+		this.pPrice = pPrice;
 	}
-	public int getP_price() {
-		return p_price;
+	public String getpImg() {
+		return pImg;
 	}
-	public void setP_price(int p_price) {
-		this.p_price = p_price;
+	public void setpImg(String pImg) {
+		this.pImg = pImg;
 	}
-	public String getP_img() {
-		return p_img;
+	public String getpName() {
+		return pName;
 	}
-	public void setP_img(String p_img) {
-		this.p_img = p_img;
+	public void setpName(String pName) {
+		this.pName = pName;
 	}
 	
 }

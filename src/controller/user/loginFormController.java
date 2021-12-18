@@ -31,7 +31,7 @@ public class loginFormController implements Controller {
 		String psd =request.getParameter("password");
 		
 		if(id.trim() == "" || psd.trim() == "") {
-			session.setAttribute("alert", "¾ÆÀÌµğ ¶Ç´Â ºñ¹Ğ¹øÈ£°¡ ºñ¿©ÀÖ½À´Ï´Ù.");
+			session.setAttribute("alert", "ì•„ì´ë”” ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 			return new MyView("/view/user/login.jsp");
 		}
 
@@ -40,11 +40,11 @@ public class loginFormController implements Controller {
 		if(login) {
 			path = "/index";
 			UserVO vo = dao.getLoginProcess(id, sha256.change(psd));
-			session.setAttribute("user_id",vo.getM_name());
+			session.setAttribute("userId",vo.getmName());
 			session.setAttribute("userVO",vo);
 			
-		}else {
-			session.setAttribute("alert", "¾ÆÀÌµğ ¶Ç´Â ºñ¹Ğ¹øÈ£°¡ Æ²·È½À´Ï´Ù.");
+		}else { 
+			session.setAttribute("alert", "ì•„ì´ë”” ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ê°€ í‹€ë ¸ìŠµë‹ˆë‹¤.");
 			path = "/view/user/login.jsp";
 		}
 		return new MyView(path);

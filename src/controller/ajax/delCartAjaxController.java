@@ -16,11 +16,14 @@ public class delCartAjaxController implements Controller {
 	public MyView process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		int c_id = Integer.parseInt(request.getParameter("c_id"));
+		int cId = Integer.parseInt(request.getParameter("cId"));
 		
 		CartDAO dao = new CartDAO();
-		int n = dao.cartDelete(c_id);
+		
+		int n = dao.cartDelete(cId);
+		
 		request.setAttribute("n", n);
+		
 		return new MyView("/view/ajax.jsp");
 	}
 
