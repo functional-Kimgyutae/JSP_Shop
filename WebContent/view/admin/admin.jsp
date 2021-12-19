@@ -55,10 +55,6 @@
                                 <td><input type="number" name="price" id="price"></td>
                             </tr>
                             <tr>
-                                <th>할인율</th>
-                                <td><input type="number" name="count" id="count"></td>
-                            </tr>
-                            <tr>
                                 <th>판매단위</th>
                                 <td><input type="text" name="unit" id="unit" maxlength='10'></td>
                             </tr>

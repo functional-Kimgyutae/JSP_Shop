@@ -21,8 +21,7 @@ public class productController implements Controller {
 		HttpSession session = request.getSession();
 		ProductDAO dao = new ProductDAO();	
 		
-		String pId = request.getParameter("pId"); 
-		
+		int pId = Integer.parseInt(request.getParameter("pId"));
 		ProductVO vo = dao.getProduct(pId);
 		
 		request.setAttribute("data",vo);

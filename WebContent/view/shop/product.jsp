@@ -13,17 +13,14 @@
     <section class="con product">
         <div class="inner_view">
             <div class="img_box">
-                <img src="<%= data.getImage_list_value("0") %>" alt="">
+                <img src="<%= data.getImageList_value("0") %>" alt="">
             </div>
-            <input type="hidden" class="p_id" value="<%= data.getP_id() %>">
-            <input type="hidden" class="p_price" value="<%= Math.ceil(data.getPrice()-(data.getPrice()*((float)data.getCount()/100))) %>">
+            <input type="hidden" class="pId" value="<%= data.getpId() %>">
+            <input type="hidden" class="pPrice" value="<%= formatter.format(data.getPrice()) %>">
 
             <div class="text">
                 <h2><%= data.getName() %><br><span><%= data.getLName() %></span></h2>
-                <p><span class="price"><%= formatter.format(Math.ceil(data.getPrice()-(data.getPrice()*((float)data.getCount()/100)))) %>원</span>
-                <% if(data.getCount() != 0) { %>
-                <span class="sale"><%= data.getCount() %>%</span><br><span class="before"><%= formatter.format(data.getPrice()) %>원</span></p>
-                <%} %>
+                <p><span class="price"><%= formatter.format(data.getPrice()) %>원</span>
                 <div class="goods_info">
                     <dl>
                         <dt>태그</dt>
@@ -47,13 +44,13 @@
                                     value="1" readonly><button class="up">+</button></span></dd>
                     </dl>
                 </div>
-                <p>총 상품금액:<span class="cost"><%= formatter.format(Math.ceil(data.getPrice()-(data.getPrice()*((float)data.getCount()/100)))) %></span>원</p>
-                <button class="<%= session.getAttribute("user_id") != null? "add_cart": "not_login" %>">장바구니 담기</button>
+                <p>총 상품금액:<span class="cost"><%= formatter.format(data.getPrice()) %></span>원</p>
+                <button class="<%= session.getAttribute("userVO") != null? "add_cart": "not_login" %>">장바구니 담기</button>
             </div>
         </div>
         <div class="product_img">
 			<% for(int i = 0; i<= data.getCnt(); i++){ %>
-				<img alt="" src="<%= data.getImage_list_value(i+"") %>">
+				<img alt="" src="<%= data.getImageList_value(i+"") %>">
 			<% } %>
         </div>
         <div class="review_table">

@@ -63,7 +63,7 @@ public class ProductDAO {
 		int n = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO product(pId,pName,pLName,pTag,pPrice,pCount,pCnt,pUnit,pPackaging,pText) values (?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO product(pId,pName,pLName,pTag,pPrice,pCnt,pUnit,pPackaging,pText) values (?,?,?,?,?,?,?,?,?)";
 		
 		conn = JdbcUtil.getConnection();
 		try {
@@ -73,11 +73,10 @@ public class ProductDAO {
 			pstmt.setString(3,vo.getLName());
 			pstmt.setInt(4,vo.getTag());
 			pstmt.setInt(5,vo.getPrice());
-			pstmt.setInt(6,vo.getCount());
-			pstmt.setInt(7,vo.getCnt());
-			pstmt.setString(8,vo.getUnit());
-			pstmt.setString(9,vo.getPackaging());
-			pstmt.setString(10,vo.getText());
+			pstmt.setInt(6,vo.getCnt());
+			pstmt.setString(7,vo.getUnit());
+			pstmt.setString(8,vo.getPackaging());
+			pstmt.setString(9,vo.getText());
 			
 			n = pstmt.executeUpdate();
 			
@@ -99,7 +98,7 @@ public class ProductDAO {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1,cnt);
-			pstmt.setString(2,vo.getImageListValue(index+""));
+			pstmt.setString(2,vo.getImageList_value(index+""));
 			n = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
@@ -128,12 +127,11 @@ public class ProductDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				ProductVO vo = new ProductVO();
-				vo.setPId(rs.getString("pId"));
+				vo.setpId(rs.getString("pId"));
 				vo.setName(rs.getString("pName"));
-				vo.setL_name(rs.getString("pLName"));
-				vo.setTag(Integer.parseInt(rs.getString("pTag")P;
-				C.setPrCe(InUger.pPseInt(rs.gTString("pPrice")));
-				vo.setCount(Integer.parseInt(rs.getString("pCount")));
+				vo.setLName(rs.getString("pLName"));
+				vo.setTag(Integer.parseInt(rs.getString("pTag")));
+				vo.setPrice(Integer.parseInt(rs.getString("pPrice")));
 				vo.setCnt(Integer.parseInt(rs.getString("pCnt")));
 				vo.setUnit(rs.getString("pUnit"));
 				vo.setPackaging(rs.getString("pPackaging"));
@@ -145,7 +143,7 @@ public class ProductDAO {
 				rsImg = pstmt.executeQuery();
 				int i = 0;
 				while(rsImg.next()) {
-					vo.setImage_list(i+"",rsImg.getString("pImg"));
+					vo.setImageList(i+"",rsImg.getString("pImg"));
 					i++;
 				}
 				list.add(vo);
@@ -160,25 +158,24 @@ public class ProductDAO {
 		return list;
 	}	
 	//상품 하나 가져오기
-	public ProductVO getProduct(String pId) {
+	public ProductVO getProduct(int pId) {
 		ProductVO vo = new ProductVO();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ResultSet rsImg = null;
-		String sql = "select * from product where pId = ? and pExit = 1  ";
+		String sql = "select * from product where pId = ? and pExit = 1";
 		conn = JdbcUtil.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, pId);
+			pstmt.setInt(1, pId);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				vo.setPId(rs.getString("pId"));
+				vo.setpId(rs.getString("pId"));
 				vo.setName(rs.getString("pName"));
-				vo.setL_name(rs.getString("pLName"));
-				vo.setTag(Integer.parseInt(rs.getString("pTag")P;
-				C.setPrCe(InUger.pPseInt(rs.gTString("pPrice")));
-				vo.setCount(Integer.parseInt(rs.getString("pCount")));
+				vo.setLName(rs.getString("pLName"));
+				vo.setTag(Integer.parseInt(rs.getString("pTag")));
+				vo.setPrice(Integer.parseInt(rs.getString("pPrice")));
 				vo.setCnt(Integer.parseInt(rs.getString("pCnt")));
 				vo.setUnit(rs.getString("pUnit"));
 				vo.setPackaging(rs.getString("pPackaging"));
@@ -190,7 +187,7 @@ public class ProductDAO {
 				rsImg = pstmt.executeQuery();
 				int i = 0;
 				while(rsImg.next()) {
-					vo.setImage_list(i+"",rsImg.getString("pImg"));
+					vo.setImageList(i+"",rsImg.getString("pImg"));
 					i++;
 				}
 			}

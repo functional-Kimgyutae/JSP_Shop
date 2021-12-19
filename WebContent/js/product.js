@@ -1,4 +1,4 @@
-let price = document.querySelector(".p_price").value;
+let price = document.querySelector(".pPrice").value;
 let cnt = document.querySelector(".cnt").value;
 
 document.querySelector(".down").addEventListener("click", () => {
@@ -36,14 +36,14 @@ if(document.querySelector(".not_login")) {
 if(document.querySelector(".add_cart")){
 	document.querySelector(".add_cart").addEventListener("click", () => {
 	    cnt = document.querySelector(".cnt").value;
-	    p_id = document.querySelector(".p_id").value;
+	    pId = document.querySelector(".pId").value;
 
 	    $.ajax(
 	        {
 	            type: "POST",
 	            url: "/Shop/ajax/add_cart",
 	            data: {
-	                "p_id": p_id,
+	                "pId": pId,
 	                "cnt": cnt
 	            },
 	            dataType: "json",
@@ -51,7 +51,7 @@ if(document.querySelector(".add_cart")){
 	                if (res.upload == "true") {
 	                    let con = confirm("장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?");
 	                    if (con) {
-	                        location.href = "/Shop/view/user/cart.jsp";
+	                        location.href = "/Shop/user/cart";
 	                    } else {
 	                        document.querySelector(".cnt").value = 1;
 	                        let str = Math.ceil(price);

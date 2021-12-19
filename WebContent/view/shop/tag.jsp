@@ -23,16 +23,11 @@
 						<% for(ProductVO data : list) {%>
 							<li>
                    				<div class="item">
-                    		    <img src="<%= data.getImage_list().get("0") %>" alt="">
-                    		    	<a href="<%= request.getContextPath() %>/shop/product?p_id=<%= data.getP_id()  %>">
+                    		    <img src="<%= data.getImageList().get("0") %>" alt="">
+                    		    	<a href="<%= request.getContextPath() %>/shop/product?pId=<%= data.getpId()  %>">
                      		    	<div class="text">
                       					<h2>[<%= data.getName() %>]</h2>
-                      					<% if(data.getCount() == 0){ %>
                        			    		<p><%= formatter.format(data.getPrice()) %>원</p>
-                      					<%}else{%>
-                      						<p><span class="count"><%= data.getCount() %>%</span><%= formatter.format(Math.round(data.getPrice()-(data.getPrice()*((float)data.getCount()/100)))) %>원</p>                    			    	
-                      		 	    		<span class="before"><%= formatter.format(data.getPrice()) %></span>                       			    	
-                       			    	<%}%>
                 			   		</div>
                 			   		</a>
                 			 	</div>

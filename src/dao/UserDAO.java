@@ -50,20 +50,20 @@ public class UserDAO {
 		conn = JdbcUtil.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vo.getMId());
-			pstmt.setString(2,vo.getMPsd());
-			pstmt.setString(3,vo.getMName());
-			pstmt.setString(4,vo.getMPhone());
-			pstmt.setString(5,vo.getMEmail());
-			pstmt.setInt(6,vo.getMGender());
+			pstmt.setString(1, vo.getmId());
+			pstmt.setString(2,vo.getmPsd());
+			pstmt.setString(3,vo.getmName());
+			pstmt.setString(4,vo.getmPhone());
+			pstmt.setString(5,vo.getmEmail());
+			pstmt.setInt(6,vo.getmGender());
 			
 			s1 = pstmt.executeUpdate();
 			
 			pstmt = conn.prepareStatement(sql1);
-			pstmt.setString(1, vo.getMId());
-			pstmt.setString(2,vo.getMAddress1());
-			pstmt.setString(3,vo.getMAddress2());
-			pstmt.setString(4,vo.getMAddress3());
+			pstmt.setString(1, vo.getmId());
+			pstmt.setString(2,vo.getmAddress1());
+			pstmt.setString(3,vo.getmAddress2());
+			pstmt.setString(4,vo.getmAddress3());
 			
 			s2 = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -115,14 +115,13 @@ public class UserDAO {
 			pstmt.setString(2, psd);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				vo.setMId(rs.getString("mId"));
-				System.out.println("����"+rs.getString("mId"));
-				vo.setMName(rs.getString("name"));
-				vo.setMPhone(rs.getString("phone"));
-				vo.setMEmail(rs.getString("email"));
-				vo.setMAddress1(rs.getString("mAddress1"));
-				vo.setMAddress2(rs.getString("mAddress2"));
-				vo.setMAddress3(rs.getString("mAddress3"));	
+				vo.setmId(rs.getString("mId"));
+				vo.setmName(rs.getString("name"));
+				vo.setmPhone(rs.getString("phone"));
+				vo.setmEmail(rs.getString("email"));
+				vo.setmAddress1(rs.getString("mAddress1"));
+				vo.setmAddress2(rs.getString("mAddress2"));
+				vo.setmAddress3(rs.getString("mAddress3"));	
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -66,7 +66,7 @@
                         type: "POST",
                         url: "/Shop/ajax/mod_cart",
                         data: { 
-                                "c_id": data,
+                                "cId": data,
                                 "cnt":cnt
                               },
                         dataType: "json",
@@ -82,7 +82,7 @@
                         type: "POST",
                         url: "/Shop/ajax/del_cart",
                         data: { 
-                                "c_id": data
+                                "cId": data
                               },
                         dataType: "json",
                         success: res => {
@@ -120,7 +120,7 @@
                             dataType: "json",
                             success: res => {
                                 alert("주문이 완료되었습니다.");
-                                location.href("/Shop/index");
+                                location.href = "/Shop/index";
                             }, error: log => { console.log("실패" + log) }
                         }
                     )

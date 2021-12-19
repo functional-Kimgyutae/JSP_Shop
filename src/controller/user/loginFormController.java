@@ -40,7 +40,7 @@ public class loginFormController implements Controller {
 		if(login) {
 			path = "/index";
 			UserVO vo = dao.getLoginProcess(id, sha256.change(psd));
-			session.setAttribute("userId",vo.getmName());
+			session.setAttribute("userId",vo.getmId());
 			session.setAttribute("userVO",vo);
 			
 		}else { 

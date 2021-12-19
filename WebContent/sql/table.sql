@@ -1,4 +1,3 @@
-
 drop table member;
 
 create table member(
@@ -19,11 +18,8 @@ SELECT m.mId "mId",m.mName "name",m.mPhone "phone",mEmail "email", da.mAddress1,
 
 SELECT mId from member where id= '';
     
-
 INSERT INTO member(mId,mPsd,mName,mPhone,mEmail,mGender) 
- VALUES ('stop','1234','占쏙옙占쏙옙占�','010-4621-9625','stoprabbit20@gmail.com','1') ;
-INSERT INTO member(mId,mPsd,mName,mPhone,mEmail,mGender) 
- VALUES ('admin','8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918','占쏙옙占쏙옙占쏙옙','010-1234-5678','y2010109@y-y.hs.kr','1'); 
+ VALUES ('admin','8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918','관리자','010-1234-5678','y2010109@y-y.hs.kr','1'); 
  
 
 
@@ -38,18 +34,17 @@ create table detailAddress(
 );
 SELECT * FROM detailAddress;
 INSERT INTO detailAddress(mId,mAddress1,mAddress2,mAddress3)
-    VALUES ('admin','占쏙옙占쏙옙占쏙옙','12222','101호');
+    VALUES ('admin','경기도 어딘','12222','101호');
 INSERT INTO detailAddress(mId,mAddress1,mAddress2,mAddress3)
-    VALUES ('stop','占쏙옙竪� 占쏙옙占쏙옙','12222','101호');
+    VALUES ('stop','','12222','101호');
 
 drop table product;
 create table product (
-    pId int primary key,
+    pId number primary key,
     pName varchar2(100),
     pLName varchar2(100),
     pTag number,
     pPrice number,
-    pCount number,
     pCnt number,
     pUnit varchar2(100),
     pPackaging varchar2(100),
@@ -59,7 +54,7 @@ create table product (
     pExit number default 1 
 );
 select * from product;
-
+select * from product where pId = 0 and pExit = 1;
 select count(*) as cnt from product;
 
 select ROWNUMBER() over (ORDER BY pId) num, p.* from product p where pExit= 1
@@ -67,7 +62,6 @@ select * from(select ROWNUMBER() over (ORDER BY pId) num, p.* from product p whe
 
 select * from product where pId = 0;
 
-INSERT INTO product(pId,pName,pLName,pTag,pPrice,pCount,pCnt,pUnit,pPackaging,pText) values ('0','占쏙옙품1','占쏙옙품2','1','10000','10','1','1占쏙옙','占쏙옙占쏙옙','占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙');
 
 
 
@@ -104,7 +98,7 @@ INSERT INTO cart (cId,pId,mId,cCnt) values (cartIdx.NEXTVAL,?,?,?);
 
 SELECT cId from cart where pId = ? and mId = ?; 
 
-DELETE FROM cart where cId = ?; 
+DELETE FROM cart where mId = ?; 
 
 UPDATE cart SET cCnt = ? WHERE cId = ?; 
 
@@ -122,7 +116,6 @@ create table orderList (
 	oDate date default sysdate
 )
 CREATE SEQUENCE orderIdx START WITH 0 minvalue 0 INCREMENT BY 1 NOCACHE;
-
 
 INSERT INTO orderList (oId,mId,oPrice) values (orderIdx.NEXTVAL,?,?);
 

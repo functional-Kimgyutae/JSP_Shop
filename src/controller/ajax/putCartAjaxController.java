@@ -25,7 +25,7 @@ public class putCartAjaxController implements Controller {
 		UserVO uVO =  (UserVO) session.getAttribute("userVO");
 		CartDAO dao = new CartDAO();
 		CartVO vo = new CartVO();
-		vo.setmId(uVO.getMId());
+		vo.setmId(uVO.getmId());
 		vo.setpId(pId);
 		vo.setcCnt(cnt);
 		

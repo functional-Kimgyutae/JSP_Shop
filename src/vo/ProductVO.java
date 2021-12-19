@@ -10,7 +10,6 @@ public class ProductVO {
 	private String lName;
 	private int tag;
 	private int price;
-	private int count;
 	private int cnt;
 	private String unit;
 	private String packaging;
@@ -19,10 +18,10 @@ public class ProductVO {
 	private int view;
 	private HashMap<String, String> imageList = new HashMap<>();
 	
-	public String getPId() {
+	public String getpId() {
 		return pId;
 	}
-	public void setPId(String pId) {
+	public void setpId(String pId) {
 		this.pId = pId;
 	}
 	public HashMap<String, String> getImageList() {
@@ -58,12 +57,6 @@ public class ProductVO {
 	}
 	public void setPrice(int price) {
 		this.price = price;
-	}
-	public int getCount() {
-		return count;
-	}
-	public void setCount(int count) {
-		this.count = count;
 	}
 	public int getCnt() {
 		return cnt;

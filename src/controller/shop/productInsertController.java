@@ -38,10 +38,9 @@ public class productInsertController implements Controller {
 		int cnt = Integer.parseInt(multi.getParameter("cnt"));
 
 		vo.setName(multi.getParameter("title"));
-		vo.setlName(multi.getParameter("lTitle"));
+		vo.setLName(multi.getParameter("l_title"));
 		vo.setTag(Integer.parseInt(multi.getParameter("tag")));
 		vo.setPrice(Integer.parseInt(multi.getParameter("price")));
-		vo.setCount(Integer.parseInt(multi.getParameter("count")));
 		vo.setCnt(cnt);
 		vo.setUnit(multi.getParameter("unit"));
 		vo.setPackaging(multi.getParameter("packaging"));
@@ -58,7 +57,7 @@ public class productInsertController implements Controller {
 
 		for (int i = 0; i <=cnt ; i++) {
 			String url = FileUpload.fileUp(multi, path, dbCnt, i);
-			vo.setImageIist(i+"", url);
+			vo.setImageList(i+"", url);
 		}
 		
 		

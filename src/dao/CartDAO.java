@@ -50,9 +50,9 @@ public class CartDAO {
 		conn = JdbcUtil.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, vo.getPId());
-			pstmt.setString(2,vo.getMId());
-			pstmt.setInt(3,vo.getCCnt());
+			pstmt.setInt(1, vo.getpId());
+			pstmt.setString(2,vo.getmId());
+			pstmt.setInt(3,vo.getcCnt());
 
 			n = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -113,13 +113,13 @@ public class CartDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				CartVO vo = new CartVO();
-				vo.setCId(rs.getInt("cId"));
-				vo.setPId(rs.getInt("pId"));
-				vo.setMId(rs.getString("mId"));
-				vo.setCCnt(rs.getInt("cCnt"));
-				vo.setPPrice(rs.getInt("pPrice"));
-				vo.setPImg(rs.getString("pImg"));		
-				vo.setPName(rs.getString("pName"));
+				vo.setcId(rs.getInt("cId"));
+				vo.setpId(rs.getInt("pId"));
+				vo.setmId(rs.getString("mId"));
+				vo.setcCnt(rs.getInt("cCnt"));
+				vo.setpPrice(rs.getInt("pPrice"));
+				vo.setpImg(rs.getString("pImg"));		
+				vo.setpName(rs.getString("pName"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
@@ -173,5 +173,23 @@ public class CartDAO {
 		}
 		
 		return  0;
+	}
+
+	public int deleteList(String mId) {
+		int n = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "DELETE FROM cart where mId = ?";
+		conn = JdbcUtil.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mId);
+			n = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("cart delete 삭제중 오류 발생");
+		}
+		return n;
+		
 	}
 }

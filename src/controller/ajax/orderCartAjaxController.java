@@ -5,6 +5,8 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -48,7 +50,9 @@ public class orderCartAjaxController implements Controller {
 		return new MyView("/view/ajax.jsp");
 		}else {
 			// 삭제 넣기
-
+			CartDAO dao = new CartDAO();
+			HttpSession session = request.getSession();
+			dao.deleteList((String)session.getAttribute("userId"));
 			return new MyView("/view/ajax.jsp");
 		}
 

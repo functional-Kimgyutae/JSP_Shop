@@ -28,7 +28,7 @@
     <header>
         <div id="user_menu" class="con">
             <ul id="list_menu">
-            	<% if(session.getAttribute("userId") != null){ %>
+            	<% if(session.getAttribute("userVO") != null){ %>
             		<% if(session.getAttribute("userId").equals("admin")) {%>
                 		<li class="menu after_bar"><a href="<%= request.getContextPath() %>/admin/admin">어드민</a></li>
                 	<% }else{ %>
