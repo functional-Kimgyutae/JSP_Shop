@@ -106,7 +106,9 @@ public class UserDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT m.mId \"mId\",m.mName \"name\",m.mPhone \"phone\",mEmail \"email\", da.mAddress1,da.mAddress2,da.mAddress3 FROM member m JOIN detailAddress da ON m.mId = da.mId where m.mId = ? and m.mPsd = ?";
+		String sql = "SELECT m.mId \"mId\",m.mName \"name\",m.mPhone \"phone\",mEmail \"email\", "
+				+ "da.mAddress1,da.mAddress2,da.mAddress3 FROM member m "
+				+ "JOIN detailAddress da ON m.mId = da.mId where m.mId = ? and m.mPsd = ?";
 	
 		conn = JdbcUtil.getConnection();
 		try {

@@ -104,7 +104,11 @@ public class CartDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select c.cId \"cId\",a.pId \"pId\",c.mId \"mId\",c.cCnt \"cCnt\",p.pPrice \"pPrice\",a.minIdx \"idx\",b.pImg \"pImg\",p.pName from (select p.pId,min(dp.idx) minIdx from product p,detailProduct dp where p.pId = dp.pId group by p.pId order by p.pId) a, DETAILPRODUCT b,cart c,product p where b.idx = a.minIdx and c.mId = ? and a.pId = c.pId and a.pId = p.pId";
+		String sql = "select c.cId \"cId\",a.pId \"pId\",c.mId \"mId\",c.cCnt \"cCnt\",p.pPrice \"pPrice\",a.minIdx \"idx\",b.pImg \"pImg\",p.pName "
+				+ "from ("
+				+ "select p.pId,min(dp.idx) minIdx from product p,detailProduct dp where p.pId = dp.pId group by p.pId order by p.pId) a, "
+				+ "DETAILPRODUCT b,cart c,product p "
+				+ "where b.idx = a.minIdx and c.mId = ? and a.pId = c.pId and a.pId = p.pId";
 		
 		conn = JdbcUtil.getConnection();
 		try {

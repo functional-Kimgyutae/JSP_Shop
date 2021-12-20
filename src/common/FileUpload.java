@@ -15,7 +15,6 @@ public class FileUpload {
 		String url = "";
 		 try{		    	
 		    	String fileName = nullOrEmptyToReplaceString(multiRequest.getFilesystemName("img"+num) ,"");
-		    	// form에서 가져온 파일 위치
 		        int i = -1;
 		        i = fileName.lastIndexOf("."); 
 		        String realFileName = "\\img_" + p_id + "_"+ num + fileName.substring(i, fileName.length());
@@ -24,7 +23,6 @@ public class FileUpload {
 		        File newFile = new File(path + realFileName);
 		        oldFile.renameTo(newFile);
 		        url = "\\Shop\\data\\product_img" + realFileName;
-		        // url  저장위치 바꾸기
 		    } catch (Exception e){
 		    	e.printStackTrace();
 		    }
@@ -32,7 +30,6 @@ public class FileUpload {
 	}
 	
 	public static String nullOrEmptyToReplaceString(String str, String replaceStr) {
-		//비여있는지 확인
 		if (str == null || "".equals(str)) {
 			return replaceStr;
 		}
