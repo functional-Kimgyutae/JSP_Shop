@@ -71,8 +71,7 @@
 }
 /* .cart .inner_result > div  */
 .cart .inner_result > div.sp {
-    margin-top: 17px;
-    padding-top: 17px;
+    padding-bottom: 17px;
     border-top: 1px solid #eee;
 }
 .cart .inner_result > div:last-child > button {
