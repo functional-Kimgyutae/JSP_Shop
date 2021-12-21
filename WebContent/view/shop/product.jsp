@@ -16,7 +16,7 @@
                 <img src="<%= data.getImageList_value("0") %>" alt="">
             </div>
             <input type="hidden" class="pId" value="<%= data.getpId() %>">
-            <input type="hidden" class="pPrice" value="<%= formatter.format(data.getPrice()) %>">
+            <input type="hidden" class="pPrice" value="<%= data.getPrice() %>">
 
             <div class="text">
                 <h2><%= data.getName() %><br><span><%= data.getLName() %></span></h2>
