@@ -65,7 +65,7 @@ public class productInsertController implements Controller {
 			n = dao.productImageImsert(vo, dbCnt,i);	
 		}
 		
-		return new MyView("/shop/product?p_id="+dbCnt);
+		return new MyView("/shop/product?pId="+dbCnt);
 	}
 
 }
