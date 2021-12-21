@@ -1,14 +1,14 @@
 package vo;
 
 public class PaginationVO {
-	public int perPage = 5;
-	public int art = 9; 
-	public boolean next = true; 
-	public boolean prev = true;
-	public int start = 1;
-	public int end = 5;
-	public int totalPage; 
-	public int total; 
+	private int perPage = 5;
+	private int art = 9; 
+	private boolean next = true; 
+	private boolean prev = true;
+	private int start = 1;
+	private int end = 5;
+	private int totalPage; 
+	private int total; 
 	
 
 	public void construct(int total,int page) {
